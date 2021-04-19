@@ -1,0 +1,14 @@
+.main-nav {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  min-height: 91px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-nav__logo {
+  height: 25px;
+  margin-bottom: 10px;
+  align-items: baseline;
+}

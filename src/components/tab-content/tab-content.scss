@@ -1,0 +1,58 @@
+@import "../../scss/colors";
+@import "../../scss/mixins";
+
+.tab-content {
+  @include flex-row-center;
+  justify-content: space-around;
+  position: relative;
+  min-height: 410px;
+  margin: 0 auto;
+}
+
+.tab-content__button {
+  @include button;
+}
+
+.tab-content__title {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 500;
+  margin-bottom: 34px;
+  color: $color-service;
+}
+
+.tab-content__desc {
+  display: block;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 400;
+  padding-top: 10px;
+}
+
+.tab-content__left {
+  max-width: 400px;
+}
+
+.tab-content__img {
+  height: 100%;
+  width: auto;
+}
+
+.tab-content__list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.tab-content__item {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: 400;
+
+  padding-bottom: 8px;
+  padding-top: 8px;
+}

@@ -1,0 +1,57 @@
+@import "colors";
+
+body {
+  min-width: 320px;
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: 400;
+  color: $color-service;
+  background-color: $color-background;
+}
+
+main,
+article,
+section {
+  display: block;
+}
+
+*,
+*::before,
+*::after {
+  font-family: "Roboto", "Arial", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 1366px;
+  position: relative;
+  padding: 0 98px;
+  margin: 0 auto;
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+.text-decoration {
+  text-decoration: underline;
+  font-weight: 500;
+}

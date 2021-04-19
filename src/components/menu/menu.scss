@@ -1,0 +1,58 @@
+@import "../../scss/colors";
+@import "../../scss/const-width";
+@import "../../scss/mixins";
+
+.menu {
+  @include flex-row-center;
+  max-width: 735px;
+  min-width: 135px;
+
+  @media (max-width: $mobile-width-only) {
+    flex-direction: column;
+  }
+
+  &--column {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    font-weight: 500;
+    max-width: 195px;
+  }
+
+  &--column .menu__item {
+    padding: 5px 14px;
+  }
+
+  &--column .menu__item--only-footer {
+    display: flex;
+  }
+
+  &--column .menu__item--only-header {
+    display: none;
+  }
+}
+
+.menu__item--only-footer {
+  display: none;
+}
+
+.menu__item {
+  padding: 10px 12.5px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.menu__link {
+  text-decoration: none;
+  color: $color-service;
+
+  &--active {
+    color: $color-main;
+  }
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
+}

@@ -1,0 +1,28 @@
+@import "../../scss/colors";
+
+.select {
+  display: inline-block;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 30px;
+  line-height: 42px;
+  font-weight: 400;
+  height: 60px;
+  color: $color-service;
+  background-color: transparent;
+  border-radius: 4px;
+
+  width: 120px;
+  padding: 10.5px;
+  border: 1px $color-service solid;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border-color: $color-main;
+  }
+}
+
+.select option {
+  color: $color-service;
+}

@@ -1,0 +1,16 @@
+@import "../../scss/colors";
+@import "../../scss/const-width";
+
+.slider {
+  width: 1366px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.slider__nav {
+  align-items: center;
+
+  @media (max-width: $mobile-width-only) {
+    display: none;
+  }
+}

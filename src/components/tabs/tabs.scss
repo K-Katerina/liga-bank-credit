@@ -1,0 +1,22 @@
+@import "../../scss/const-width";
+@import "../../scss/colors";
+
+.tabs {
+  margin-bottom: 40px;
+  background-color: $color-service--lightest;
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 140px;
+  }
+}
+
+.tabs__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-bottom: 10px;
+
+  @media (max-width: $mobile-width-only) {
+    overflow: auto;
+  }
+}
