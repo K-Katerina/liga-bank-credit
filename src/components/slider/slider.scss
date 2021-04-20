@@ -2,15 +2,20 @@
 @import "../../scss/const-width";
 
 .slider {
-  width: 1366px;
+  width: 100%;
   position: relative;
   margin: 0 auto;
+
+  @media (min-width: $tablet-width) {
+
+  }
+
+  @media (min-width: $desktop-width) {
+    max-width: 1366px;
+    min-width: $desktop-width;
+  }
 }
 
 .slider__nav {
   align-items: center;
-
-  @media (max-width: $mobile-width-only) {
-    display: none;
-  }
 }

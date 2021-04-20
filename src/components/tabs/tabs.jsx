@@ -19,10 +19,12 @@ const Tabs = ({className}) => {
                          nameButton={TabNames[key]}/>
                 )}
             </div>
-            {tab === TabTitles.DEPOSITS && <Deposits/>}
-            {tab === TabTitles.CREDITS && <Credits/>}
-            {tab === TabTitles.INSURANCE && <Insurance/>}
-            {tab === TabTitles.ONLINE_SERVICES && <Services/>}
+            <div className="tabs__content">
+                {tab === TabTitles.DEPOSITS && <Deposits/>}
+                {tab === TabTitles.CREDITS && <Credits/>}
+                {tab === TabTitles.INSURANCE && <Insurance/>}
+                {tab === TabTitles.ONLINE_SERVICES && <Services/>}
+            </div>
         </section>
     );
 };

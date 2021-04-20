@@ -1,7 +1,8 @@
 import {Actions} from '../../const';
 
 const initialState = {
-    data: {}
+    data: {},
+    menuIsOpen: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.payload
+            };
+        case Actions.CHANGE_VISIBILITY_MENU:
+            return {
+                ...state,
+                menuIsOpen: action.payload
             };
         default:
             return state;

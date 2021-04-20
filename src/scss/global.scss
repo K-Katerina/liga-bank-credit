@@ -1,4 +1,5 @@
 @import "colors";
+@import "const-width";
 
 body {
   min-width: 320px;
@@ -41,10 +42,21 @@ img {
 }
 
 .wrapper {
-  width: 1366px;
+  padding: 0 30px;
   position: relative;
-  padding: 0 98px;
+  min-width: 320px;
   margin: 0 auto;
+
+  @media (min-width: $tablet-width) {
+    min-width: $tablet-width;
+    padding: 0 45px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 98px;
+    min-width: $desktop-width;
+    max-width: 1366px;
+  }
 }
 
 .rotate180 {

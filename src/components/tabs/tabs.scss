@@ -3,20 +3,32 @@
 
 .tabs {
   margin-bottom: 40px;
-  background-color: $color-service--lightest;
+
+  position: relative;
+  min-width: 320px;
+
+  @media (min-width: $tablet-width) {
+  }
 
   @media (min-width: $desktop-width) {
-    margin-bottom: 140px;
+    padding: 0 98px;
+    max-width: 1366px;
+    min-width: $desktop-width;
+    margin: 0 auto 140px;
   }
+}
+
+.tabs__content {
+  background-color: $color-service--lightest;
+  padding: 0 30px;
 }
 
 .tabs__wrapper {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  margin-bottom: 10px;
 
-  @media (max-width: $mobile-width-only) {
-    overflow: auto;
+  @media (max-width: $tablet-width-only) {
+    display: none;
   }
 }

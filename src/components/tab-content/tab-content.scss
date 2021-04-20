@@ -5,8 +5,17 @@
   @include flex-row-center;
   justify-content: space-around;
   position: relative;
-  min-height: 410px;
+  min-height: 380px;
   margin: 0 auto;
+  padding: 15px 0;
+
+  @media (min-width: $tablet-width) {
+    padding: 60px 0;
+  }
+
+  @media (min-width: $desktop-width) {
+    min-height: 410px;
+  }
 }
 
 .tab-content__button {
@@ -30,12 +39,46 @@
 }
 
 .tab-content__left {
-  max-width: 400px;
+  z-index: 10;
+
+  @media (min-width: $tablet-width) {
+    max-width: 355px;
+  }
+
+  @media (min-width: $desktop-width) {
+    max-width: 400px;
+  }
+}
+
+.tab-content__right {
+  align-self: flex-end;
+
+  @media (max-width: $mobile-width-only) {
+    height: 113px;
+    width: 87px;
+    position: absolute;
+    right: -20px;
+    top: 25%;
+    z-index: 1;
+  }
 }
 
 .tab-content__img {
-  height: 100%;
   width: auto;
+  object-fit: cover;
+
+  @media (max-width: $mobile-width-only) {
+    height: 100%;
+    object-position: 50%;
+  }
+
+  @media (min-width: $tablet-width) {
+    height: 260px;
+  }
+
+  @media (min-width: $desktop-width) {
+    height: 100%;
+  }
 }
 
 .tab-content__list {

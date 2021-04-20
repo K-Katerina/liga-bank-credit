@@ -2,9 +2,21 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  min-height: 91px;
+  min-height: 48px;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: $mobile-width-only) {
+    border-bottom: 2px rgba($color-service--lighten, 0.4) solid;
+  }
+
+  @media (min-width: $tablet-width) {
+    min-height: 91px;
+  }
+
+  @media (min-width: $desktop-width) {
+
+  }
 }
 
 .main-nav__logo {
@@ -12,3 +24,15 @@
   margin-bottom: 10px;
   align-items: baseline;
 }
+
+.main-nav__menu {
+  @media (max-width: $mobile-width-only) {
+    background-color: $color-service--lightest;
+    width: 100%;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    z-index: 15;
+  }
+}
+

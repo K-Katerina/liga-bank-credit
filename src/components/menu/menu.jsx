@@ -1,9 +1,12 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Menu = ({className}) => {
+    const menuIsOpen = useSelector(state => state.menuIsOpen);
+
     return (
-        <div className={`${className} menu`}>
+        <div className={`menu ${className} ${!menuIsOpen && 'menu--closed'}`}>
             <span className="menu__item">
                 <a href="/" className="menu__link">
                     Услуги

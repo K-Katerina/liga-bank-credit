@@ -39,7 +39,7 @@ const Child0 = ({className}) => <Preview className={className}
 
 const Child1 = ({className}) => <Preview className={className}
                                          title="Лига Банк"
-                                         subtitle="Ваша уверенность в завтрашнем дне"
+                                         subtitle="Ваша уверенность в&nbsp;завтрашнем дне"
                                          isLight={false}
                                          img={{
                                            alt: "Пример белой карты клиента нашего банка",

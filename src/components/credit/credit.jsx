@@ -4,7 +4,7 @@ import {Tabs} from '../tabs/tabs';
 
 const Credit = () => {
     return (
-        <main className="credit wrapper">
+        <main className="credit">
             <Tabs className="credit__tabs"/>
             <Map className="credit__map">Map</Map>
         </main>

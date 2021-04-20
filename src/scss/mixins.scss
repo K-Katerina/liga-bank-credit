@@ -83,7 +83,6 @@
   font-weight: 500;
 
   min-height: 93px;
-  min-width: 292px;
 
   align-items: center;
 
@@ -137,6 +136,6 @@
 
   &:focus,
   &:hover {
-    border-color: $color-service--dark;
+    border-color: $color-main--dark;
   }
 }

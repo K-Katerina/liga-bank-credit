@@ -6,8 +6,16 @@
   background: linear-gradient(180.24deg, $color-service--lightest 36.31%, $color-service--lighten 99.79%);
   z-index: 10;
   position: relative;
-  min-height: 400px;
   margin: 0 auto;
+  min-height: 226px;
+
+  @media (min-width: $tablet-width) {
+    min-height: 300px;
+  }
+
+  @media (min-width: $desktop-width) {
+    min-height: 400px;
+  }
 
   &--light {
     background: $color-main;
@@ -24,30 +32,62 @@
 }
 
 .preview__title {
-  font-size: 54px;
-  line-height: 64px;
+  font-size: 38px;
+  line-height: 44px;
+  margin-bottom: 20px;
   font-weight: 700;
-  margin-bottom: 34px;
   color: $color-service;
 
-  &--light {
+  @media (min-width: $tablet-width) {
+    font-size: 54px;
+    line-height: 64px;
+    margin-bottom: 34px;
+  }
+
+  @media (min-width: $desktop-width) {
+  }
+
+    &--light {
     color: $color-service--lightest;
   }
 }
 
 .preview__subtitle {
   display: block;
-  font-size: 22px;
-  line-height: 25px;
+  font-size: 16px;
+  line-height: 18px;
+  padding-top: 20px;
   font-weight: 400;
-  padding-top: 10px;
+
+  @media (max-width: $mobile-width-only) {
+    max-width: 210px;
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 22px;
+    line-height: 25px;
+    padding-top: 10px;
+  }
+
+  @media (min-width: $desktop-width) {
+  }
 }
 
 .preview__left {
   position: relative;
-  margin-left: 270px;
-  padding-top: 115px;
   z-index: 15;
+  margin-left: 15px;
+  padding-top: 18px;
+
+  @media (min-width: $tablet-width) {
+    margin-left: 86px;
+    padding-top: 76px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-left: 270px;
+    padding-top: 115px;
+  }
 }
 
 .preview__right {
@@ -61,5 +101,13 @@
 
 .preview__img {
   height: 100%;
-  width: auto;
+  object-fit: cover;
+
+  @media (max-width: $mobile-width-only) {
+    object-position: 60%;
+  }
+
+  @media (min-width: $desktop-width) {
+    width: auto;
+  }
 }

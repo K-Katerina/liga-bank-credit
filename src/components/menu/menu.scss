@@ -6,9 +6,14 @@
   @include flex-row-center;
   max-width: 735px;
   min-width: 135px;
+  flex-direction: column;
 
   @media (max-width: $mobile-width-only) {
-    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
   }
 
   &--column {
@@ -29,6 +34,12 @@
   &--column .menu__item--only-header {
     display: none;
   }
+
+  &--closed {
+    @media (max-width: $mobile-width-only) {
+      display: none;
+    }
+  }
 }
 
 .menu__item--only-footer {
@@ -38,8 +49,18 @@
 .menu__item {
   padding: 10px 12.5px;
 
-  &:first-child {
-    margin-left: 0;
+  @media (max-width: $mobile-width-only) {
+    width: 100%;
+    padding-left: 15%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px rgba($color-service--lighten, 0.4) solid;
+  }
+
+  @media (min-width: $tablet-width) {
+    &:first-child {
+      margin-left: 0;
+    }
   }
 }
 

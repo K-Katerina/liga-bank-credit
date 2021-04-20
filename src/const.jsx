@@ -1,5 +1,6 @@
 export const Actions = {
-    GET_DATA: 'GET_DATA'
+    GET_DATA: 'GET_DATA',
+    CHANGE_VISIBILITY_MENU: 'CHANGE_VISIBILITY_MENU'
 };
 
 export const Tabs = {

@@ -5,6 +5,11 @@
 
 .sign-in__text {
   padding-left: 10px;
+  display: none;
+
+  @media (min-width: $desktop-width) {
+    display: inline-block;
+  }
 }
 
 .sign-in__link {
