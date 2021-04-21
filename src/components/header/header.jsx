@@ -1,6 +1,6 @@
 import React from 'react';
 import {MainNav} from '../main-nav/main-nav';
-import {Child0, Child1, Child2} from '../preview/preview';
+import {PreviewMain, PreviewMan, PreviewWoman} from '../preview/preview';
 import {Slider} from '../slider/slider';
 
 const Header = () => {
@@ -8,9 +8,9 @@ const Header = () => {
         <header className="header">
             <MainNav className="header__nav"/>
             <Slider className="header__slider">
-                <Child0/>
-                <Child1/>
-                <Child2/>
+                <PreviewMain/>
+                <PreviewMan/>
+                <PreviewWoman/>
             </Slider>
         </header>
     );

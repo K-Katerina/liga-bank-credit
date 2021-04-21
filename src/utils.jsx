@@ -12,3 +12,7 @@ const getWordForm = (n, array) => {
         return n + ' ' + array[2];
     }
 };
+
+export const range = (count) => {
+   return [...Array(count).keys()]
+};

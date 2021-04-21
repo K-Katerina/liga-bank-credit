@@ -21,6 +21,14 @@
 .tabs__content {
   background-color: $color-service--lightest;
   padding: 0 30px;
+
+  @media (max-width: $mobile-width-only) {
+    min-height: 462px;
+  }
+
+  @media (max-width: $tablet-width-only) {
+    min-height: 480px;
+  }
 }
 
 .tabs__wrapper {
@@ -29,6 +37,12 @@
   flex-grow: 1;
 
   @media (max-width: $tablet-width-only) {
+    display: none;
+  }
+}
+
+.tabs__indicators {
+  @media (min-width: $desktop-width) {
     display: none;
   }
 }

@@ -1,19 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import Indicators from '../indicators/indicators';
 
 const Slider = ({className, children}) => {
 
-    const [currentChild, setNewCurrentChild] = useState(0);
+    const [currentChild, setCurrentChild] = useState(0);
+    const [timeoutId, setTimeoutId] = useState(null);
+
+    const setNewCurrentChild = (value) => {
+        setCurrentChild((currentChild + value) % children.length)
+    };
+
+    const onSliderClick = () => {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        setNewCurrentChild(1);
+    };
 
     useEffect(() => {
-       setTimeout(() => setNewCurrentChild((currentChild + 1) % children.length), 4000)
-    }, [currentChild, children.length]);
+        setTimeoutId(setTimeout(() => setNewCurrentChild(1), 4000));
+    }, [currentChild]);
 
     return (
         <section className={`${className} slider`}>
-            <div className="slider__nav">
+            <div className="slider__img" onTouchMove={() => onSliderClick()}>
                 {children[currentChild]}
             </div>
+            <Indicators className="slider__indicators" activeIndicator={currentChild} count={children.length}/>
         </section>
     );
 };

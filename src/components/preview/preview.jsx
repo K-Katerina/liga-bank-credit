@@ -24,43 +24,43 @@ const Preview = ({className, title, subtitle, button, img, isLight}) => {
     );
 };
 
-const Child0 = ({className}) => <Preview className={className}
-                                         title="Лига Банк"
-                                         subtitle="Кредиты на любой случай"
-                                         isLight={true}
-                                         button={{
-                                           title: "Рассчитать кредит",
-                                           href: "/",
-                                         }}
-                                         img={{
-                                           alt: "Пример белой карты клиента нашего банка",
-                                           src: main
-                                         }}/>;
+const PreviewMain = ({className}) => <Preview className={className}
+                                              title="Лига Банк"
+                                              subtitle="Кредиты на любой случай"
+                                              isLight={true}
+                                              button={{
+                                                title: "Рассчитать кредит",
+                                                href: "/",
+                                              }}
+                                              img={{
+                                                alt: "Пример белой карты клиента нашего банка",
+                                                src: main
+                                              }}/>;
 
-const Child1 = ({className}) => <Preview className={className}
-                                         title="Лига Банк"
-                                         subtitle="Ваша уверенность в&nbsp;завтрашнем дне"
-                                         isLight={false}
-                                         img={{
-                                           alt: "Пример белой карты клиента нашего банка",
-                                           src: man
-                                         }}/>;
+const PreviewMan = ({className}) => <Preview className={className}
+                                             title="Лига Банк"
+                                             subtitle="Ваша уверенность в&nbsp;завтрашнем дне"
+                                             isLight={false}
+                                             img={{
+                                               alt: "Клиент нашего банка",
+                                               src: man
+                                             }}/>;
 
-const Child2 = ({className}) => <Preview className={className}
-                                         title="Лига Банк"
-                                         subtitle="Всегда рядом"
-                                         isLight={false}
-                                         button={{
-                                             title: "Найти отделение",
-                                             href: "/"
-                                         }}
-                                         img={{
-                                           alt: "Найти отделение",
-                                           src: woman
-                                         }}/>;
+const PreviewWoman = ({className}) => <Preview className={className}
+                                               title="Лига Банк"
+                                               subtitle="Всегда рядом"
+                                               isLight={false}
+                                               button={{
+                                                 title: "Найти отделение",
+                                                 href: "/"
+                                               }}
+                                               img={{
+                                                 alt: "Клиент нашего банка",
+                                                 src: woman
+                                               }}/>;
 
 Preview.propTypes = {
     className: PropTypes.string
 };
 
-export {Child0, Child1, Child2};
+export {PreviewMain, PreviewMan, PreviewWoman};
