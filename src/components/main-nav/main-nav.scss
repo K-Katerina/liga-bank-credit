@@ -36,3 +36,18 @@
   }
 }
 
+.main-nav__menu .menu__item {
+  @media (max-width: $mobile-width-only) {
+    width: 100%;
+    padding-left: 15%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px rgba($color-service--lighten, 0.4) solid;
+  }
+}
+
+.main-nav > .menu--closed {
+  @media (max-width: $mobile-width-only) {
+    display: none;
+  }
+}

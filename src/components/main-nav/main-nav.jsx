@@ -17,7 +17,6 @@ const MainNav = ({className}) => {
         dispatch(changeVisibilityMenu(false));
     };
 
-
     return (
         <nav className={`${className} main-nav wrapper`}>
             <Burger className="main-nav__burger"/>

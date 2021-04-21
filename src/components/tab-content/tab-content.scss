@@ -3,7 +3,6 @@
 
 .tab-content {
   @include flex-row-center;
-  justify-content: space-around;
   position: relative;
   min-height: 380px;
   margin: 0 auto;
@@ -40,6 +39,8 @@
 
 .tab-content__left {
   z-index: 10;
+  margin-right: auto;
+  max-width: 80%;
 
   @media (min-width: $tablet-width) {
     max-width: 355px;
@@ -51,15 +52,15 @@
 }
 
 .tab-content__right {
-  align-self: flex-end;
+  position: absolute;
+  right: 0;
+  bottom: 60px;
+  z-index: 1;
 
   @media (max-width: $mobile-width-only) {
-    height: 113px;
-    width: 87px;
     position: absolute;
     right: -20px;
     top: 25%;
-    z-index: 1;
   }
 }
 
@@ -68,8 +69,9 @@
   object-fit: cover;
 
   @media (max-width: $mobile-width-only) {
-    height: 100%;
     object-position: 50%;
+    height: 113px;
+    width: 87px;
   }
 
   @media (min-width: $tablet-width) {
