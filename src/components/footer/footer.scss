@@ -15,6 +15,10 @@
     flex-direction: column;
     margin: 0 auto;
   }
+
+  @media (min-width: $desktop-width) {
+    justify-content: space-between;
+  }
 }
 
 .footer__left {
@@ -29,7 +33,7 @@
   @media (min-width: $desktop-width) {
     display: flex;
     flex-direction: row;
-    padding-bottom: 0;
+    padding: 0;
   }
 }
 
