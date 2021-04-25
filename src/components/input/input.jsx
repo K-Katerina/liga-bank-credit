@@ -8,6 +8,9 @@ const Input = (props) => {
               {props.label}
             </span>
             <input {...props} className="input__text" type="number"/>
+            <span className="input__sublabel">
+              {props.sublabel}
+            </span>
         </label>
     );
 };

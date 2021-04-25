@@ -1,9 +1,10 @@
 @import "colors";
 
 @mixin title {
-  font-size: 30px;
-  line-height: 40px;
+  font-size: 41px;
+  line-height: 57px;
   font-weight: 700;
+  color: $color-service;
 }
 
 @mixin flex-row-center {

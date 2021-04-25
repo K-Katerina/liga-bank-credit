@@ -11,12 +11,20 @@
 }
 
 .input__label {
-  font-size: 22px;
-  line-height: 30px;
-  font-weight: 500;
-  color: $color-service;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  color: $color-service--light;
   display: block;
   padding-bottom: 22px;
+}
+
+.input__sublabel {
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  color: $color-service--light;
+  display: block;
 }
 
 .input__text {

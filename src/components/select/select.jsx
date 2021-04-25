@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Select = ({options, onChange, value, className}) => {
+const Select = ({options, onChange, title, className}) => {
     return (
-        <select value={value}
-                onChange={(evt) => onChange(evt)}
+        <select onChange={(evt) => onChange(evt)}
                 className={`${className} select`}>
+            <option value="none" hidden className="select__option select__option--title">{title}</option>
             {options.map((option) =>
-                <option key={option} value={option}>{option}</option>
+                <option key={option} value={option} className="select__option">{option}</option>
             )}
         </select>
     );
@@ -17,7 +17,7 @@ Select.propTypes = {
     className: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
     onChange: PropTypes.func,
-    value: PropTypes.string
+    title: PropTypes.string
 };
 
 export {Select};
