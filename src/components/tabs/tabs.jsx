@@ -17,6 +17,7 @@ const Tabs = ({className}) => {
 
     return (
         <section className={`tabs ${className}`}>
+            <h2 className="visually-hidden">Наши предложения</h2>
             <div className="tabs__wrapper">
                 {tabOrder.map((tab) =>
                     <Tab key={tab}

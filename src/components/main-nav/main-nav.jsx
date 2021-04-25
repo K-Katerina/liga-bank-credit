@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {changeVisibilityMenu} from '../../store/actions/actions';
+import {changeVisibilityMenu} from '../../store/actions';
 import {Burger} from '../burger/burger';
 import {CloseButton} from '../close-button/close-button';
 import {Menu} from '../menu/menu';

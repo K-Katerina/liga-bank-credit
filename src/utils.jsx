@@ -1,6 +1,6 @@
 export const extend = (a, b) => Object.assign({}, a, b);
 
-const getWordForm = (n, array) => {
+export const getWordForm = (n, array) => {
     const modN = n % 10;
     if (n > 10 && n < 21) {
         return n + ' ' + array[2];

@@ -1,5 +1,5 @@
 import {getResultForBase} from '../api/api';
-import {getData} from './actions/actions';
+import {getData} from './actions';
 
 export const fetchData = (date) => {
     return (dispatch) => {

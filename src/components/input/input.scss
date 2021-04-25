@@ -1,7 +1,8 @@
 @import "../../scss/colors";
 
 .input {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   position: relative;
   margin-right: 15px;
 
@@ -11,36 +12,15 @@
 }
 
 .input__label {
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 400;
-  color: $color-service--light;
-  display: block;
-  padding-bottom: 22px;
+  @include label;
 }
 
 .input__sublabel {
-  font-size: 14px;
-  line-height: 19px;
-  font-weight: 400;
-  color: $color-service--light;
-  display: block;
+  @include sublabel;
 }
 
 .input__text {
-  font-size: 24px;
-  line-height: 28px;
-  font-weight: 500;
-  color: black;
-  background-color: transparent;
-  border-radius: 4px;
-  text-align: center;
-  vertical-align: middle;
-  display: inline-block;
-
-  width: 390px;
-  padding: 15px 15px 15px 26px;
-  border: 1px $color-service solid;
+  @include input-field;
 }
 
 .input:hover .input__text,

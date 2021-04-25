@@ -1,0 +1,59 @@
+@import "../../scss/mixins";
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+}
+
+.calculator__wrapper {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $desktop-width) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.calculator__left,
+.calculator__right {
+  flex-grow: 1;
+}
+
+.calculator__summary {
+  align-self: center;
+  background-color: $color-service--lightest;
+
+  @media (max-width: $tablet-width-only) {
+    width: 100%;
+    background-color: transparent;
+  }
+}
+
+.calculator__title {
+  @include title;
+  margin-bottom: 30px;
+
+  @media (max-width: $mobile-width-only) {
+    padding: 0 15px;
+  }
+}
+
+.calculator__subtitle,
+.calculator h3 {
+  @include title;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.calculator__capital {
+  @include label;
+}
+
+.calculator__select,
+.calculator__price,
+.calculator__range {
+  margin-bottom: 30px;
+}

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changeVisibilityMenu} from '../../store/actions/actions';
+import {changeVisibilityMenu} from '../../store/actions';
 
 const Burger = ({className}) => {
     const dispatch = useDispatch();
