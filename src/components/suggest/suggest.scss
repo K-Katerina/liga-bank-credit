@@ -1,3 +1,39 @@
 .suggest {
   background-color: $color-service--lightest;
+  padding: 55px;
+
+  @media (min-width: $desktop-width) {
+    margin-left: 70px;
+  }
+}
+
+.suggest__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggest__top,
+.suggest__bottom {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
+  }
+}
+
+.suggest__result {
+  flex-grow: 1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &:first-child {
+    @media (min-width: $tablet-width) {
+      padding-right: 10px;
+    }
+  }
+}
+
+.suggest__desc {
+  display: block;
 }

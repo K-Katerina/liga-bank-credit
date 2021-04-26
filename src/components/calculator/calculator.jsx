@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {getWordForm} from '../../utils';
+import {InfoError} from '../info-block/info-block';
 import {Input} from '../input/input';
 import {Range} from '../range/range';
 import {Select} from '../select/select';
@@ -16,9 +17,11 @@ const Calculator = ({className}) => {
     const fee = useSelector(state => state.fee);
     const period = useSelector(state => state.period);
     const useCapital = useSelector(state => state.useCapital);
+    const isCredit = useSelector(state => state.isCredit);
 
     const onTargetChange = (value) => {
-        dispatch(changeTarget(value));
+        dispatch(changeTarget(value.includes('Авто')));
+        // isCredit
     };
 
     const onCostChange = (value) => {
@@ -37,6 +40,12 @@ const Calculator = ({className}) => {
         dispatch(changeUseCapital(value));
     };
 
+    const [isOpenForm, setIsOpenForm] = useState(false);
+
+    const onSuggestButtonClick = () => {
+        setIsOpenForm(!isOpenForm);
+    };
+
     return (
         <section className={`${className} calculator wrapper`}>
             <h2 className="calculator__title">Кредитный калькулятор</h2>
@@ -50,13 +59,14 @@ const Calculator = ({className}) => {
                         onChange={(evt) => onTargetChange(evt.target.value)}
                         value={target}
                     />
+                    {isCredit !== null && <>
                     <h3 className="calculator__parameter">Шаг 2. Введите параметры кредита</h3>
                     <div className="calculator__subtitle">
                         <Input className="calculator__price"
                                value={cost}
                                onChange={(evt) => onCostChange(evt.target.value)}
-                               label="Стоимость недвижимости"
-                               sublabel="От 1&nbsp;200&nbsp;000 до 25&nbsp;000&nbsp;000 рублей"/>
+                               label={`Стоимость ${isCredit ? 'автомобиля' : 'недвижимости'}`}
+                               sublabel={isCredit ? 'От 500 000 до 5 000 000 рублей' : 'От 1 200 000 до 25 000 000 рублей'}/>
 
                         <Range onChange={(evt) => onFeeChange(evt.target.value)}
                                className="calculator__range"
@@ -84,12 +94,20 @@ const Calculator = ({className}) => {
                             </span>
                         </label>
                     </div>
+                    </>}
                 </div>
                 <div className="calculator__right">
-                    <Suggest className="calculator__suggest"/>
+                    {isCredit !== null && <>
+                        {cost < 10
+                            ? <InfoError className="calculator__error"/>
+                            : <Suggest className="calculator__suggest" onClick={() => onSuggestButtonClick(222)}/>
+                        }
+                    </>
+                    }
                 </div>
             </div>
-            <Summary className="calculator__summary"/>
+            {isOpenForm &&
+            <Summary className="calculator__summary" onClick={() => console.log(111)}/>}
         </section>
     );
 };

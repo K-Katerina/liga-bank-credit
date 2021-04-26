@@ -3,11 +3,11 @@ import {Actions} from '../../const';
 const initialState = {
     data: {},
     menuIsOpen: false,
-    target: null,
     cost: 0,
     fee: 0,
     period: 1,
-    useCapital: true
+    useCapital: true,
+    isCredit: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
         case Actions.CHANGE_TARGET:
             return {
                 ...state,
-                target: action.payload
+                isCredit: action.payload
             };
         case Actions.CHANGE_COST:
             return {
