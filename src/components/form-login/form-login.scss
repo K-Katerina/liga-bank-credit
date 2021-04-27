@@ -1,0 +1,39 @@
+.form-login {
+  position: relative;
+  width: 544px;
+  min-height: 493px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+  border: 4px $color-main solid;
+  background-color: $color-service--lightest;
+}
+
+.form-login__input {
+  margin-top: 30px;
+}
+
+.form-login__logo {
+}
+
+.form-login__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-login__submit {
+  min-width: 100%;
+  margin-top: 30px;
+}
+
+.form-login__link {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: $color-service--light;
+  text-decoration: none;
+  text-align: right;
+}

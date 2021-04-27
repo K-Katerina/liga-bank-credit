@@ -6,8 +6,8 @@ const Select = ({options, onChange, title, className}) => {
         <select onChange={(evt) => onChange(evt)}
                 className={`${className} select`}>
             <option value="none" hidden className="select__option select__option--title">{title}</option>
-            {options.map((option) =>
-                <option key={option} value={option} className="select__option">{option}</option>
+            {Object.keys(options).map((key) =>
+                <option key={key} value={key} className="select__option">{options[key]}</option>
             )}
         </select>
     );
@@ -15,7 +15,7 @@ const Select = ({options, onChange, title, className}) => {
 
 Select.propTypes = {
     className: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.string),
+    options: PropTypes.object,
     onChange: PropTypes.func,
     title: PropTypes.string
 };

@@ -30,7 +30,7 @@ const PreviewMain = ({className}) => <Preview className={className}
                                               isLight={true}
                                               button={{
                                                 title: "Рассчитать кредит",
-                                                href: "/",
+                                                href: "#calculator",
                                               }}
                                               img={{
                                                 alt: "Пример белой карты клиента нашего банка",
@@ -52,7 +52,7 @@ const PreviewWoman = ({className}) => <Preview className={className}
                                                isLight={false}
                                                button={{
                                                  title: "Найти отделение",
-                                                 href: "/"
+                                                 href: "#map"
                                                }}
                                                img={{
                                                  alt: "Клиент нашего банка",

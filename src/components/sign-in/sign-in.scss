@@ -12,9 +12,12 @@
   }
 }
 
-.sign-in__link {
+.sign-in__button {
   display: flex;
   align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Map = ({className}) => {
     return (
-        <article className={`map ${className}`}>
+        <article className={`map ${className}`} id="map">
             <h2 className="map__title">Отделения Лига Банка</h2>
             <iframe
                 className="map__iframe"
