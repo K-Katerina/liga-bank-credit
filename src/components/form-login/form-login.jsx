@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {changeVisibilityFormLogin, login} from '../../store/actions';
+import {changeVisibilityFormLogin} from '../../store/actions';
+import {saveToLocalStorage} from '../../thunks';
 import {Button} from '../button/button';
 import {Input} from '../input/input';
 import {Logo} from '../logo/logo';
@@ -22,7 +23,7 @@ const FormLogin = ({className}) => {
         setErrorPassword(passwordInvalid);
 
         if (!emailInvalid && !passwordInvalid) {
-            dispatch(login({email, password}));
+            dispatch(saveToLocalStorage({email, password}));
             closeForm();
         }
     };

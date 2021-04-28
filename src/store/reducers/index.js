@@ -1,7 +1,8 @@
 import {Actions, CreditTarget} from '../../const';
 
+const localEmail = localStorage.getItem('email');
+
 const initialState = {
-    data: {},
     menuIsOpen: false,
     target: null,
     formLoginIsOpen: false,
@@ -10,9 +11,8 @@ const initialState = {
     period: 1,
     useCapital: true,
     isCredit: null,
-    isLoggedIn: false,
     successIsOpen: false,
-    login: null
+    email: localEmail
 };
 
 const reducer = (state = initialState, action) => {
@@ -66,7 +66,12 @@ const reducer = (state = initialState, action) => {
         case Actions.LOGIN:
             return {
                 ...state,
-                login: action.payload
+                email: action.payload
+            };
+        case Actions.LOGOUT:
+            return {
+                ...state,
+                email: null
             };
         default:
             return state;

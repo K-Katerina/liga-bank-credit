@@ -8,7 +8,8 @@ export const Actions = {
     CHANGE_FEE: 'CHANGE_FEE',
     CHANGE_PERIOD: 'CHANGE_PERIOD',
     CHANGE_USE_CAPITAL: 'CHANGE_USE_CAPITAL',
-    LOGIN: 'LOGIN'
+    LOGIN: 'LOGIN',
+    LOGOUT: 'LOGOUT'
 };
 
 export const Tabs = {

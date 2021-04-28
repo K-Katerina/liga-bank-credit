@@ -2,13 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {changeVisibilityFormLogin} from '../../store/actions';
+import {clearToLocalStorage} from '../../thunks';
 
 const SignIn = ({className}) => {
     const dispatch = useDispatch();
-    const login = useSelector(state => state.login);
+    const email = useSelector(state => state.email);
 
     const onSignInClick = () => {
-        dispatch(changeVisibilityFormLogin(true));
+        if (email) {
+            dispatch(clearToLocalStorage());
+        } else {
+            dispatch(changeVisibilityFormLogin(true));
+        }
     };
 
     return (
@@ -20,7 +25,7 @@ const SignIn = ({className}) => {
                         fill="#1F1E25"/>
                 </svg>
                 <span className="sign-in__text">
-                    {login ? login.email : 'Войти в Интернет-банк'}
+                    {email ? email : 'Войти в Интернет-банк'}
                 </span>
             </button>
         </div>

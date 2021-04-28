@@ -45,10 +45,11 @@ export const changeUseCapital = (payload) => ({
     payload: payload
 });
 
-export const login = ({email, password}) => ({
+export const login = (payload) => ({
     type: Actions.LOGIN,
-    payload: {
-        email,
-        password
-    }
+    payload: payload
+});
+
+export const logout = () => ({
+    type: Actions.LOGOUT
 });
