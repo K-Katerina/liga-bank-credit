@@ -41,6 +41,12 @@
   }
 }
 
+.calculator__success {
+  @media (max-width: $mobile-width-only) {
+    margin: 0 15px;
+  }
+}
+
 .calculator__subtitle,
 .calculator h3 {
   @include title;
