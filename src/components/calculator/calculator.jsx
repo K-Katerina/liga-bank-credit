@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {CreditTargetNames} from '../../const';
 import {getWordForm} from '../../utils';
 import {InfoError} from '../info-block/info-block';
-import {Input} from '../input/input';
+import {InputWithButtons} from '../input-with-buttons/input-with-buttons';
 import {Range} from '../range/range';
 import {Select} from '../select/select';
 import {SuccessModal} from '../success-modal/success-modal';
@@ -79,16 +79,16 @@ const Calculator = ({className}) => {
                         className="calculator__select"
                         options={CreditTargetNames}
                         title={"Выберите цель кредита"}
-                        onChange={(evt) => onTargetChange(evt.target.value)}
+                        onChange={(value) => onTargetChange(value)}
                     />
                     {isCredit !== null && <>
                         <h3 className="calculator__parameter">Шаг 2. Введите параметры кредита</h3>
                         <div className="calculator__subtitle">
-                            <Input className="calculator__price"
-                                   value={cost}
-                                   onChange={(evt) => onCostChange(evt.target.value)}
-                                   label={`Стоимость ${isCredit ? 'автомобиля' : 'недвижимости'}`}
-                                   sublabel={isCredit ? 'От 500 000 до 5 000 000 рублей' : 'От 1 200 000 до 25 000 000 рублей'}/>
+                            <InputWithButtons className="calculator__price"
+                                              value={cost}
+                                              onChange={(value) => onCostChange(value)}
+                                              label={`Стоимость ${isCredit ? 'автомобиля' : 'недвижимости'}`}
+                                              sublabel={isCredit ? 'От 500 000 до 5 000 000 рублей' : 'От 1 200 000 до 25 000 000 рублей'}/>
 
                             <Range onChange={(evt) => onFeeChange(evt.target.value)}
                                    className="calculator__range"
@@ -112,8 +112,8 @@ const Calculator = ({className}) => {
                                     type="checkbox"
                                     value={useCapital}/>
                                 <span>
-                                &nbsp;Использовать материнский капитал
-                            </span>
+                                    &nbsp;Использовать материнский капитал
+                                </span>
                             </label>
                         </div>
                     </>}

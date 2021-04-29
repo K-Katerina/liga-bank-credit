@@ -1,0 +1,29 @@
+.input-with-buttons {
+  position: relative;
+}
+
+.input-with-buttons__button {
+  top: 35%;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  outline: 0;
+  font-size: 42px;
+  cursor: pointer;
+  z-index: 20;
+
+  &:hover,
+  &:focus {
+    color: $color-main--dark;
+  }
+
+  &--minus {
+    left: 5%;
+  }
+
+  &--plus {
+    right: 5%;
+  }
+}
