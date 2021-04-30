@@ -15,11 +15,6 @@ export const changeVisibilityFormLogin = (payload) => ({
     payload: payload
 });
 
-export const changeVisibilitySuccess = (payload) => ({
-    type: Actions.CHANGE_VISIBILITY_SUCCESS,
-    payload: payload
-});
-
 export const changeTarget = (payload) => ({
     type: Actions.CHANGE_TARGET,
     payload: payload

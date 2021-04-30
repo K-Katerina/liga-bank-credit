@@ -62,6 +62,7 @@ const FormLogin = ({className}) => {
                                className={`${errorEmail && 'input--error'} form-login__input`}
                                type="email"
                                sublabel={errorEmail}
+                               autoFocus
                                onChange={(event) => {
                                     setErrorEmail('');
                                     setEmail(event.target.value)

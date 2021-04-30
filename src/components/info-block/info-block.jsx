@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
+import {CreditTarget} from '../../const';
 
 const InfoBlock = ({className, title, desc, type= "left"}) => {
 
@@ -18,7 +19,7 @@ const InfoSuccess = ({className}) => <InfoBlock title="Спасибо за об�
                                                 className={className}/>;
 
 const InfoError = ({className}) => {
-    const isCredit = useSelector(state => state.isCredit);
+    const isCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
 
     return <InfoBlock title={`Наш банк не выдаёт ${isCredit ? 'автомобильные' : 'ипотечные'} кредиты меньше ${isCredit ? '2' : '5'}00 000 рублей.`}
                       desc="Попробуйте использовать другие параметры для расчёта."

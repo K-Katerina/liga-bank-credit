@@ -1,19 +1,11 @@
 import PropTypes from 'prop-types';
 import React from "react";
-import {useDispatch} from 'react-redux';
-import {changeVisibilitySuccess} from '../../store/actions';
 import {InfoSuccess} from '../info-block/info-block';
 import {Modal} from '../modal/modal';
 
-const SuccessModal = ({className}) => {
-    const dispatch = useDispatch();
-
-    const closeForm = () => {
-        dispatch(changeVisibilitySuccess(false));
-    };
-
+const SuccessModal = ({className, changeVisibilitySuccess}) => {
     return (
-        <Modal closeModal={() => closeForm()}>
+        <Modal closeModal={() => changeVisibilitySuccess(false)}>
             <InfoSuccess className={className}/>
         </Modal>
     );

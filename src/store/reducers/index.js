@@ -1,4 +1,4 @@
-import {Actions, CreditTarget} from '../../const';
+import {Actions} from '../../const';
 
 const localEmail = localStorage.getItem('email');
 
@@ -10,8 +10,6 @@ const initialState = {
     fee: 0,
     period: 1,
     useCapital: true,
-    isCredit: null,
-    successIsOpen: false,
     email: localEmail
 };
 
@@ -32,15 +30,9 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 formLoginIsOpen: action.payload
             };
-        case Actions.CHANGE_VISIBILITY_SUCCESS:
-            return {
-                ...state,
-                successIsOpen: action.payload
-            };
         case Actions.CHANGE_TARGET:
             return {
                 ...state,
-                isCredit: action.payload === CreditTarget.AUTO_CREDIT,
                 target: action.payload
             };
         case Actions.CHANGE_COST:
