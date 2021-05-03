@@ -17,12 +17,14 @@ const Select = ({options, onChange, title, className}) => {
                 {isOpenSelect ? title: options[target] || title}
             </span>
             {isOpenSelect &&
-                <ul className={`select__options`}>
+                <ul className={'select__options'}>
                     {Object.keys(options).map((key) =>
                         <span onClick={() => onChange(key)}
                             key={key}
                             className="select__option"
-                            tabIndex="0">{options[key]}</span>
+                            tabIndex="0">
+                            {options[key]}
+                        </span>
                     )}
                 </ul>
             }

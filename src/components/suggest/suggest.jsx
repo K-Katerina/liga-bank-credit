@@ -1,11 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
+import {AutoCreditConsts, CreditTarget, MortgageConsts, MOUNTS_IN_YEAR, PART_PAYMENT_OF_INCOME} from '../../const';
+import {getWordForm} from '../../utils';
 import {Button} from '../button/button';
 
 const Suggest = ({className, onClick}) => {
 
-    const isCredit = useSelector(state => state.isCredit);
+    const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
+    const creditSum = useSelector(state => state.cost - state.fee - MortgageConsts.PARENT_CAPITAL * (state.useCapital && state.target === CreditTarget.MORTGAGE));
+    const cost = useSelector(state => state.cost);
+    const fee = useSelector(state => state.fee);
+    const useComprehensiveCover = useSelector(state => state.useComprehensiveCover);
+    const useInsurance = useSelector(state => state.useInsurance);
+    const period = useSelector(state => state.period);
+
+
+    const getPercents = () => {
+        let percent = AutoCreditConsts.MAX_INTEREST_RATE;
+        if (isAutoCredit) {
+            if (cost >= AutoCreditConsts.MONEY_BORDER) {
+                percent = AutoCreditConsts.MIN_INTEREST_RATE;
+            }
+            if (useComprehensiveCover || useInsurance) {
+                percent = AutoCreditConsts.MAX_INTEREST_RATE_ADD;
+            }
+            if (useComprehensiveCover && useInsurance) {
+                percent = AutoCreditConsts.MIN_INTEREST_RATE_ALL_ADD;
+            }
+            // - До 2 000 000 рублей - 16%
+            // - 2 000 000 рублей и выше - 15%
+            // - При оформление КАСКО или страхования жизни - 8,5%
+            // - При оформлении КАСКО и страхования жизни - 3,5%
+        }
+        else {
+            if (fee * 100 < MortgageConsts.PERCENT_FEE_OF_COST_BORDER * cost) {
+                percent = MortgageConsts.MAX_INTEREST_RATE;
+            } else {
+                percent = MortgageConsts.MIN_INTEREST_RATE;
+            }
+            // - Первоначальный взнос до 15%, процентная ставка - 9,40%
+            // - Первоначальный взнос 15% и выше, процентная ставка - 8,50%
+        }
+        return percent;
+    };
+
+    const getMonthlyPayment = () => {
+        const interestRate = (getPercents() / 100) / 12;
+        return Math.floor(cost * (interestRate + (interestRate/(Math.pow(1 + interestRate,period * MOUNTS_IN_YEAR) - 1))));
+    };
+
+    const getRequiredIncome = () => {
+        return Math.floor(getMonthlyPayment() * 100 / PART_PAYMENT_OF_INCOME);
+    };
+
 
     return (
         <section className={`suggest ${className}`}>
@@ -13,13 +61,13 @@ const Suggest = ({className, onClick}) => {
             <div className="suggest__wrapper">
                 <div className="suggest__top">
                     <p className="suggest__result">
-                        1 330 000 рублей
+                        {creditSum.toLocaleString()} рублей
                         <small className="suggest__desc">
-                            Сумма {isCredit ? 'автокредита' : 'ипотеки'}
+                            Сумма {isAutoCredit ? 'автокредита' : 'ипотеки'}
                         </small>
                     </p>
                     <p className="suggest__result">
-                        9,40%
+                        {getPercents()}%
                         <small className="suggest__desc">
                             Процентная ставка
                         </small>
@@ -27,13 +75,13 @@ const Suggest = ({className, onClick}) => {
                 </div>
                 <div className="suggest__bottom">
                     <p className="suggest__result">
-                        27 868 рублей
+                        {getWordForm(getMonthlyPayment(), ['рубль', 'рубля', 'рублей'])}
                         <small className="suggest__desc">
                             Ежемесячный платеж
                         </small>
                     </p>
                     <p className="suggest__result">
-                        61 929 рублей
+                        {getWordForm(getRequiredIncome(), ['рубль', 'рубля', 'рублей'])}
                         <small className="suggest__desc">
                             Необходимый доход
                         </small>

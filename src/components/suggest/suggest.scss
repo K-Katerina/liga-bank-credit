@@ -12,6 +12,14 @@
   flex-direction: column;
 }
 
+.suggest__wrapper p {
+  width: 100%;
+
+  @media (min-width: $tablet-width) {
+    min-width: 200px;
+  }
+}
+
 .suggest__top,
 .suggest__bottom {
   display: flex;

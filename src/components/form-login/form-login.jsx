@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {changeVisibilityFormLogin} from '../../store/actions';
 import {saveToLocalStorage} from '../../thunks';
 import {Button} from '../button/button';
@@ -48,7 +48,7 @@ const FormLogin = ({className}) => {
             default:
                 break;
         }
-    }
+    };
 
     return (
         <Modal closeModal={() => closeForm()}>
@@ -65,18 +65,18 @@ const FormLogin = ({className}) => {
                                autoFocus
                                onChange={(event) => {
                                     setErrorEmail('');
-                                    setEmail(event.target.value)
+                                    setEmail(event.target.value);
                                }}/>
                         <div className="form-login__input-wrapper">
                             <Input id="password"
                                    value={password}
                                    label="Пароль"
                                    className={`${errorPassword && 'input--error'} form-login__input input--password`}
-                                   type={isVisiblePassword ? "text" : "password"}
+                                   type={isVisiblePassword ? 'text' : 'password'}
                                    sublabel={errorPassword}
                                    onChange={(event) => {
                                         setErrorPassword('');
-                                        setPassword(event.target.value)
+                                        setPassword(event.target.value);
                                    }}/>
                             <button className="input__password-img" type="button" onClick={() => setIsVisiblePassword(!isVisiblePassword)}>
                                 <svg className="" width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@ const FormLogin = ({className}) => {
                 </form>
         </Modal>
     );
-}
+};
 
 FormLogin.propTypes = {
     className: PropTypes.string

@@ -19,7 +19,9 @@ Input.propTypes = {
     className: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    label: PropTypes.string
+    label: PropTypes.string,
+    sublabel: PropTypes.string,
+    type: PropTypes.string
 };
 
 export {Input};

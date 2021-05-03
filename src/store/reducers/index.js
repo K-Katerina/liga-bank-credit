@@ -9,10 +9,11 @@ const initialState = {
     cost: 0,
     fee: 0,
     period: 1,
-    useCapital: true,
-    useInsurance: true,
-    useComprehensiveCover: true,
-    email: localEmail
+    useCapital: false,
+    useInsurance: false,
+    useComprehensiveCover: false,
+    email: localEmail,
+    data: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -76,6 +77,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 email: null
+            };
+        case Actions.SAVE_DATA:
+            return {
+                ...state,
+                data: action.payload
             };
         default:
             return state;

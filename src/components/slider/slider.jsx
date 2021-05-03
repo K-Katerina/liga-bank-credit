@@ -8,7 +8,7 @@ const Slider = ({className, children}) => {
     const [timeoutId, setTimeoutId] = useState(null);
 
     const setNewCurrentChild = (value) => {
-        setCurrentChild((currentChild + value) % children.length)
+        setCurrentChild((currentChild + value) % children.length);
     };
 
     const onSliderClick = () => {
@@ -38,7 +38,8 @@ Slider.propTypes = {
         PropTypes.shape({
             src: PropTypes.string.isRequired,
             alt: PropTypes.string
-    }))
+    })),
+    children: PropTypes.arrayOf(PropTypes.node)
 };
 
 export {Slider};

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from "react";
+import React from 'react';
 import {InfoSuccess} from '../info-block/info-block';
 import {Modal} from '../modal/modal';
 
@@ -9,10 +9,11 @@ const SuccessModal = ({className, changeVisibilitySuccess}) => {
             <InfoSuccess className={className}/>
         </Modal>
     );
-}
+};
 
 SuccessModal.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    changeVisibilitySuccess: PropTypes.func
 };
 
 export {SuccessModal};

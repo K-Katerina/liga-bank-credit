@@ -17,7 +17,7 @@ const Burger = ({className}) => {
             Меню
           </span>
         </button>
-    )
+    );
 };
 
 Burger.propTypes = {

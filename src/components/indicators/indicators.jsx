@@ -15,7 +15,8 @@ const Indicators = ({className, activeIndicator, count}) => {
 
 Indicators.propTypes = {
     className: PropTypes.string.isRequired,
-    activeIndicator: number
+    activeIndicator: number,
+    count: PropTypes.number
 };
 
 export default React.memo(Indicators);

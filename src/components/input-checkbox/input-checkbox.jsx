@@ -6,9 +6,9 @@ const InputCheckbox = ({className, value, onChange, label}) => {
     return (
         <label className={`${className} input-checkbox`}>
             <input
-                onChange={(evt) => onChange(evt.target.value)}
+                onChange={(evt) => onChange(evt.target.checked)}
                 type="checkbox"
-                value={value}/>
+                checked={value}/>
             <span>
                 &nbsp;{label}
             </span>
@@ -18,6 +18,9 @@ const InputCheckbox = ({className, value, onChange, label}) => {
 
 InputCheckbox.propTypes = {
     className: PropTypes.string.isRequired,
+    value: PropTypes.bool,
+    onChange: PropTypes.func,
+    label: PropTypes.string
 };
 
 export {InputCheckbox};

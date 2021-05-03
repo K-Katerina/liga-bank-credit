@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useRef, useEffect} from "react";
+import React, {useRef, useEffect} from 'react';
 import {ESC_CODE} from '../../const';
 import {CloseButton} from '../close-button/close-button';
 
@@ -38,10 +38,11 @@ const Modal = ({children, closeModal}) => {
             </div>
         </div>
     );
-}
+};
 
 Modal.propTypes = {
-    closeModal: PropTypes.func
+    closeModal: PropTypes.func,
+    children: PropTypes.arrayOf(PropTypes.node)
 };
 
 export {Modal};

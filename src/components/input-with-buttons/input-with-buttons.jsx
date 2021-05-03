@@ -5,7 +5,7 @@ import {Input} from '../input/input';
 const NamesButton = {
     PLUS: 'PLUS',
     MINUS: 'MINUS',
-}
+};
 
 const InputWithButtons = ({className, onChange, value, ...rest}) => {
 

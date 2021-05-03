@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 import {CreditTarget} from '../../const';
 
-const InfoBlock = ({className, title, desc, type= "left"}) => {
+const InfoBlock = ({className, title, desc, type= 'left'}) => {
 
     return (
         <section className={`info-block ${className} info-block--${type}`}>
@@ -23,10 +23,21 @@ const InfoError = ({className}) => {
 
     return <InfoBlock title={`Наш банк не выдаёт ${isCredit ? 'автомобильные' : 'ипотечные'} кредиты меньше ${isCredit ? '2' : '5'}00 000 рублей.`}
                       desc="Попробуйте использовать другие параметры для расчёта."
-                      className={className}/>
-}
+                      className={className}/>;
+};
 
 InfoBlock.propTypes = {
+    className: PropTypes.string,
+    title: PropTypes.string,
+    desc: PropTypes.string,
+    type: PropTypes.string
+};
+
+InfoSuccess.propTypes = {
+    className: PropTypes.string
+};
+
+InfoError.propTypes = {
     className: PropTypes.string
 };
 

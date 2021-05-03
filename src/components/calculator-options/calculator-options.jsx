@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {AutoCreditConsts, CreditTarget, MortgageConsts} from '../../const';
 import {CalculatorInputs} from '../calculator-inputs/calculator-inputs';
 import {CalculatorSelect} from '../calculator-select/calculator-select';
 import {InfoError} from '../info-block/info-block';
@@ -10,12 +11,14 @@ import {
     changeFee,
     changePeriod,
     changeUseCapital
-} from '../../store/actions'
+} from '../../store/actions';
 
 const CalculatorOptions = ({className, onSuggestButtonClick}) => {
     const dispatch = useDispatch();
-    const cost = useSelector(state => state.cost);
     const target = useSelector(state => state.target);
+
+    const creditSum = useSelector(state => state.cost - state.fee - MortgageConsts.PARENT_CAPITAL * (state.useCapital && state.target === CreditTarget.MORTGAGE));
+    const minCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT ? AutoCreditConsts.MIN_CREDIT : MortgageConsts.MIN_CREDIT);
 
     useEffect(() => {
         resetForm();
@@ -39,7 +42,7 @@ const CalculatorOptions = ({className, onSuggestButtonClick}) => {
             <div className="calculator-options__right">
                 {target !== null &&
                     <>
-                        {cost < 10
+                        {creditSum < minCredit
                             ? <InfoError className="calculator-options__error"/>
                             : <Suggest className="calculator-options__suggest" onClick={() => onSuggestButtonClick()}/>
                         }
@@ -52,6 +55,7 @@ const CalculatorOptions = ({className, onSuggestButtonClick}) => {
 
 CalculatorOptions.propTypes = {
     className: PropTypes.string.isRequired,
+    onSuggestButtonClick: PropTypes.func
 };
 
 export {CalculatorOptions};

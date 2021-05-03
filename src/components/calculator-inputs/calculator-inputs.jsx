@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {CreditTarget} from '../../const';
@@ -11,7 +11,7 @@ import {
     changeFee,
     changePeriod,
     changeUseCapital, changeUseComprehensiveCover, changeUseInsurance
-} from '../../store/actions'
+} from '../../store/actions';
 
 const CalculatorInputs = ({className}) => {
     const dispatch = useDispatch();
@@ -21,12 +21,7 @@ const CalculatorInputs = ({className}) => {
     const useCapital = useSelector(state => state.useCapital);
     const useComprehensiveCover = useSelector(state => state.useComprehensiveCover);
     const useInsurance = useSelector(state => state.useInsurance);
-    const target = useSelector(state => state.target);
-    const [isCredit, setIsCredit] = useState(target === CreditTarget.AUTO_CREDIT);
-
-    useEffect(() => {
-        setIsCredit(target === CreditTarget.AUTO_CREDIT);
-    }, [target]);
+    const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
 
     const onCostChange = (value) => {
         dispatch(changeCost(value));
@@ -59,8 +54,8 @@ const CalculatorInputs = ({className}) => {
                 <InputWithButtons className="calculator-inputs__price"
                                   value={cost}
                                   onChange={(value) => onCostChange(value)}
-                                  label={`Стоимость ${isCredit ? 'автомобиля' : 'недвижимости'}`}
-                                  sublabel={isCredit ? 'От 500 000 до 5 000 000 рублей' : 'От 1 200 000 до 25 000 000 рублей'}/>
+                                  label={`Стоимость ${isAutoCredit ? 'автомобиля' : 'недвижимости'}`}
+                                  sublabel={isAutoCredit ? 'От 500 000 до 5 000 000 рублей' : 'От 1 200 000 до 25 000 000 рублей'}/>
 
                 <Range onChange={(evt) => onFeeChange(evt.target.value)}
                        className="calculator-inputs__range"
@@ -78,7 +73,7 @@ const CalculatorInputs = ({className}) => {
                        label="Срок кредитования"
                        sublabel={getWordForm(period, ['год', 'года', 'лет'])}/>
 
-                {isCredit
+                {isAutoCredit
                     ? <>
                         <InputCheckbox className="calculator-inputs__comprehensive-cover" label="Оформить КАСКО в нашем банке" value={useComprehensiveCover} onChange={(value) => onUseComprehensiveCover(value)}/>
                         <InputCheckbox className="calculator-inputs__insurance" label="Оформить Страхование жизни в нашем банке" value={useInsurance} onChange={(value) => onUseInsurance(value)}/>

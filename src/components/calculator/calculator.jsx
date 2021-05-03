@@ -6,7 +6,7 @@ import {SuccessModal} from '../success-modal/success-modal';
 import {Summary} from '../summary/summary';
 import {
     changeTarget,
-} from '../../store/actions'
+} from '../../store/actions';
 
 const Calculator = ({className}) => {
     const dispatch = useDispatch();

@@ -5,7 +5,7 @@ export const saveToLocalStorage = ({email, password}) => {
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
         dispatch(login(email));
-    }
+    };
 };
 
 export const clearToLocalStorage = () => {
@@ -13,5 +13,5 @@ export const clearToLocalStorage = () => {
         localStorage.removeItem('email');
         localStorage.removeItem('password');
         dispatch(logout());
-    }
+    };
 };

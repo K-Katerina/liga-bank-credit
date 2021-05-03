@@ -1,10 +1,5 @@
 import {Actions} from '../../const';
 
-export const getData = (payload) => ({
-    type: Actions.GET_DATA,
-    payload: payload
-});
-
 export const changeVisibilityMenu = (payload) => ({
     type: Actions.CHANGE_VISIBILITY_MENU,
     payload: payload
@@ -57,4 +52,9 @@ export const login = (payload) => ({
 
 export const logout = () => ({
     type: Actions.LOGOUT
+});
+
+export const saveData = (payload) => ({
+    type: Actions.SAVE_DATA,
+    payload: payload
 });

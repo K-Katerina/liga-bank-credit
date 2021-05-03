@@ -27,11 +27,12 @@ const Range = ({className, label, sublabel, onChange, value, max, min, step = 1}
 Range.propTypes = {
     className: PropTypes.string.isRequired,
     onChange: PropTypes.func,
-    value: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string,
     sublabel: PropTypes.string,
     min: PropTypes.number,
-    max: PropTypes.number
+    max: PropTypes.number,
+    step: PropTypes.number
 };
 
 export {Range};

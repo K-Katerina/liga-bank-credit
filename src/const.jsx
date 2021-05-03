@@ -10,8 +10,11 @@ export const Actions = {
     CHANGE_USE_INSURANCE: 'CHANGE_USE_INSURANCE',
     CHANGE_USE_COMPREHENSIVE_COVER: 'CHANGE_USE_COMPREHENSIVE_COVER',
     LOGIN: 'LOGIN',
-    LOGOUT: 'LOGOUT'
+    LOGOUT: 'LOGOUT',
+    SAVE_DATA: 'SAVE_DATA'
 };
+
+export const MOUNTS_IN_YEAR = 12;
 
 export const Tabs = {
     DEPOSITS: 'DEPOSITS',
@@ -37,41 +40,42 @@ export const CreditTargetNames = {
     AUTO_CREDIT: 'Автомобильное кредитование'
 };
 
-export const PARENT_CAPITAL = 470_000;
+export const PART_PAYMENT_OF_INCOME = 45; // мин % части ежемесячного платежа от дохода
 
 export const MortgageConsts = {
-    MIN_COST: 1_200_000,
-    MAX_COST: 25_000_000,
-    STEP_COST: 100_000,
+    MIN_COST: 1200000,
+    MAX_COST: 25000000,
+    STEP_COST: 100000,
+    PARENT_CAPITAL: 470000,
     MIN_FEE: 10,    // %
     MAX_FEE: 100,   // %
     STEP_FEE: 5,    // %
-    PART_PAYMENT_OF_INCOME: 45, // мин % части ежемесячного платежа от дохода
-    MIN_CREDIT: 500_000,
+    MIN_CREDIT: 500000,
     MIN_PERIOD: 5,
     MAX_PERIOD: 30,
     MIN_INTEREST_RATE: 8.5,
     MAX_INTEREST_RATE: 9.4,
+    PERCENT_FEE_OF_COST_BORDER: 15
 
 // - Первоначальный взнос до 15%, процентная ставка - 9,40%
 // - Первоначальный взнос 15% и выше, процентная ставка - 8,50%
 };
 
 export const AutoCreditConsts = {
-    MIN_COST: 500_000,
-    MAX_COST: 5_000_000,
-    STEP_COST: 50_000,
+    MIN_COST: 500000,
+    MAX_COST: 5000000,
+    STEP_COST: 50000,
     MIN_FEE: 20,    // %
     MAX_FEE: 100,   // %
     STEP_FEE: 5,    // %
-    PART_PAYMENT_OF_INCOME: 45, // мин % части ежемесячного платежа от дохода
-    MIN_CREDIT: 200_000,
+    MIN_CREDIT: 200000,
     MIN_PERIOD: 1,
     MAX_PERIOD: 5,
-    MIN_INTEREST_RATE: 8.5,
-    MAX_INTEREST_RATE: 9.4,
-    MIN_INTEREST_RATE_ADD: 8.5,
-    MAX_INTEREST_RATE_ALL_ADD: 3.5,
+    MIN_INTEREST_RATE: 15,
+    MAX_INTEREST_RATE: 16,
+    MAX_INTEREST_RATE_ADD: 8.5,
+    MIN_INTEREST_RATE_ALL_ADD: 3.5,
+    MONEY_BORDER: 2000000
 
 // - До 2 000 000 рублей - 16%
 // - 2 000 000 рублей и выше - 15%

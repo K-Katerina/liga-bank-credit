@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {CreditTargetNames} from '../../const';
 import {Select} from '../select/select';
-import {changeTarget} from '../../store/actions'
+import {changeTarget} from '../../store/actions';
 
 const CalculatorSelect = ({className}) => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const CalculatorSelect = ({className}) => {
             <Select
                 className="calculator-select__select"
                 options={CreditTargetNames}
-                title={"Выберите цель кредита"}
+                title={'Выберите цель кредита'}
                 onChange={(value) => onTargetChange(value)}
             />
         </section>
