@@ -28,10 +28,6 @@ const Suggest = ({className, onClick}) => {
             if (useComprehensiveCover && useInsurance) {
                 percent = AutoCreditConsts.MIN_INTEREST_RATE_ALL_ADD;
             }
-            // - До 2 000 000 рублей - 16%
-            // - 2 000 000 рублей и выше - 15%
-            // - При оформление КАСКО или страхования жизни - 8,5%
-            // - При оформлении КАСКО и страхования жизни - 3,5%
         }
         else {
             if (fee * 100 < MortgageConsts.PERCENT_FEE_OF_COST_BORDER * cost) {
@@ -39,8 +35,6 @@ const Suggest = ({className, onClick}) => {
             } else {
                 percent = MortgageConsts.MIN_INTEREST_RATE;
             }
-            // - Первоначальный взнос до 15%, процентная ставка - 9,40%
-            // - Первоначальный взнос 15% и выше, процентная ставка - 8,50%
         }
         return percent;
     };
