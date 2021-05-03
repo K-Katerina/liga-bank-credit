@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Input} from '../input/input';
 
-const Range = ({className, label, sublabel, onChange, value, max, min}) => {
+const Range = ({className, label, sublabel, onChange, value, max, min, step = 1}) => {
 
     return (
         <div className={`${className} range`}>
@@ -13,6 +13,7 @@ const Range = ({className, label, sublabel, onChange, value, max, min}) => {
             <input className="range__slider"
                    type="range"
                    onChange={(evt) => onChange(evt)}
+                   step={step}
                    value={value}
                    max={max}
                    min={min} />

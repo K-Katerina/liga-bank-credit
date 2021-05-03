@@ -10,7 +10,7 @@ import {
     changeCost,
     changeFee,
     changePeriod,
-    changeUseCapital
+    changeUseCapital, changeUseComprehensiveCover, changeUseInsurance
 } from '../../store/actions'
 
 const CalculatorInputs = ({className}) => {
@@ -19,6 +19,8 @@ const CalculatorInputs = ({className}) => {
     const fee = useSelector(state => state.fee);
     const period = useSelector(state => state.period);
     const useCapital = useSelector(state => state.useCapital);
+    const useComprehensiveCover = useSelector(state => state.useComprehensiveCover);
+    const useInsurance = useSelector(state => state.useInsurance);
     const target = useSelector(state => state.target);
     const [isCredit, setIsCredit] = useState(target === CreditTarget.AUTO_CREDIT);
 
@@ -40,6 +42,14 @@ const CalculatorInputs = ({className}) => {
 
     const onUseCapitalClick = (value) => {
         dispatch(changeUseCapital(value));
+    };
+
+    const onUseInsurance = (value) => {
+        dispatch(changeUseInsurance(value));
+    };
+
+    const onUseComprehensiveCover = (value) => {
+        dispatch(changeUseComprehensiveCover(value));
     };
 
     return (
@@ -68,8 +78,13 @@ const CalculatorInputs = ({className}) => {
                        label="Срок кредитования"
                        sublabel={getWordForm(period, ['год', 'года', 'лет'])}/>
 
-                <InputCheckbox className="calculator-inputs__capital" label="Использовать материнский капитал" value={useCapital} onChange={(value) => onUseCapitalClick(value)}/>
-
+                {isCredit
+                    ? <>
+                        <InputCheckbox className="calculator-inputs__comprehensive-cover" label="Оформить КАСКО в нашем банке" value={useComprehensiveCover} onChange={(value) => onUseComprehensiveCover(value)}/>
+                        <InputCheckbox className="calculator-inputs__insurance" label="Оформить Страхование жизни в нашем банке" value={useInsurance} onChange={(value) => onUseInsurance(value)}/>
+                    </>
+                    : <InputCheckbox className="calculator-inputs__capital" label="Использовать материнский капитал" value={useCapital} onChange={(value) => onUseCapitalClick(value)}/>
+                }
             </div>
         </section>
     );

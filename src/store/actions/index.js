@@ -40,6 +40,16 @@ export const changeUseCapital = (payload) => ({
     payload: payload
 });
 
+export const changeUseComprehensiveCover = (payload) => ({
+    type: Actions.CHANGE_USE_COMPREHENSIVE_COVER,
+    payload: payload
+});
+
+export const changeUseInsurance = (payload) => ({
+    type: Actions.CHANGE_USE_INSURANCE,
+    payload: payload
+});
+
 export const login = (payload) => ({
     type: Actions.LOGIN,
     payload: payload

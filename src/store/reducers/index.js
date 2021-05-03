@@ -10,6 +10,8 @@ const initialState = {
     fee: 0,
     period: 1,
     useCapital: true,
+    useInsurance: true,
+    useComprehensiveCover: true,
     email: localEmail
 };
 
@@ -54,6 +56,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 useCapital: action.payload
+            };
+        case Actions.CHANGE_USE_COMPREHENSIVE_COVER:
+            return {
+                ...state,
+                useComprehensiveCover: action.payload
+            };
+        case Actions.CHANGE_USE_INSURANCE:
+            return {
+                ...state,
+                useInsurance: action.payload
             };
         case Actions.LOGIN:
             return {

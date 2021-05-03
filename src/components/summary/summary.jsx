@@ -32,7 +32,7 @@ const Summary = ({className, onClick}) => {
                     <span className="item__value">5 лет</span>
                 </li>
             </ul>
-            <Input className="summary__input" onChange={() => console.log()} placeholder="ФИО" type="string"/>
+            <Input className="summary__input" onChange={() => console.log()} autoFocus placeholder="ФИО" type="string"/>
             <div className="summary__group">
                 <Input className="summary__input" onChange={() => console.log()} placeholder="Телефон" type="tel"/>
                 <Input className="summary__input" onChange={() => console.log()} placeholder="E-mail" type="email"/>
