@@ -4,12 +4,14 @@
 
   @media (min-width: $desktop-width) {
     margin-left: 70px;
+    padding: 60px 60px 60px 70px;
   }
 }
 
 .suggest__wrapper {
   display: flex;
   flex-direction: column;
+  margin-bottom: 12px;
 }
 
 .suggest__wrapper p {
@@ -18,7 +20,7 @@
   overflow: hidden;
 
   @media (min-width: $tablet-width) {
-    min-width: 200px;
+    min-width: 190px;
   }
 }
 
@@ -34,8 +36,10 @@
 
 .suggest__result {
   flex-grow: 1;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 5px 5px 23px;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 500;
 
   &:first-child {
     @media (min-width: $tablet-width) {
@@ -44,6 +48,14 @@
   }
 }
 
+.suggest__button {
+  min-width: 100%;
+}
+
 .suggest__desc {
   display: block;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  color: $color-service--light;
 }

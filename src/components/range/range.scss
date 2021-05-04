@@ -15,6 +15,7 @@
   -webkit-transition: .2s;
   transition: opacity .2s;
   cursor: pointer;
+  margin-top: 12px;
 
   &:hover {
     opacity: 1;
@@ -23,16 +24,16 @@
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: $color-main;
     cursor: pointer;
   }
 
   &::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: $color-main;
     cursor: pointer;

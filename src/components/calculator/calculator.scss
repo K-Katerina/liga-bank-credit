@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 90px;
+  }
 }
 
 .calculator__summary {
@@ -23,10 +27,20 @@
   @media (max-width: $mobile-width-only) {
     padding: 0 15px;
   }
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 50px;
+  }
 }
 
 .calculator__success {
   @media (max-width: $mobile-width-only) {
     margin: 0 15px;
+  }
+}
+
+.calculator__options {
+  @media (min-width: $desktop-width) {
+    margin-bottom: 60px;
   }
 }

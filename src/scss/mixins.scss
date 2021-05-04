@@ -126,8 +126,8 @@
 }
 
 @mixin input-field {
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 18px;
+  line-height: 25px;
   font-weight: 500;
   color: black;
   background-color: transparent;
@@ -137,7 +137,7 @@
   display: inline-block;
 
   width: 100%;
-  padding: 15px 15px 15px 26px;
+  padding: 17px;
   border: 1px $color-service solid;
 
   &:focus,
@@ -152,7 +152,7 @@
   font-weight: 400;
   color: $color-service--light;
   display: block;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 }
 
 @mixin sublabel {
@@ -161,5 +161,5 @@
   font-weight: 400;
   color: $color-service--light;
   display: block;
-  padding-top: 10px;
+  padding-top: 8px;
 }
