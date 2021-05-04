@@ -40,13 +40,7 @@ const CalculatorInputs = ({className}) => {
     };
 
     const onFeeChange = (value) => {
-        if (getPercentOfCost(value) > maxFee) {
-            dispatch(changeFee(getCostOfPercent(maxFee)));
-        } else if (getPercentOfCost(value) < minFee) {
-            dispatch(changeFee(getCostOfPercent(minFee)));
-        } else {
-            dispatch(changeFee(value));
-        }
+        dispatch(changeFee(value));
     };
 
     const onPeriodChange = (value) => {
