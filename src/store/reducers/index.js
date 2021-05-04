@@ -13,7 +13,7 @@ const initialState = {
     useInsurance: false,
     useComprehensiveCover: false,
     email: localEmail,
-    data: null
+    data: { count: 1 }
 };
 
 const reducer = (state = initialState, action) => {
@@ -81,7 +81,12 @@ const reducer = (state = initialState, action) => {
         case Actions.SAVE_DATA:
             return {
                 ...state,
-                data: action.payload
+                data: {...state.data, ...action.payload}
+            };
+        case Actions.DELETE_DATA:
+            return {
+                ...state,
+                data: {count: state.data.count}
             };
         default:
             return state;

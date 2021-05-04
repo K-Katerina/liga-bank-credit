@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {changeVisibilityFormLogin} from '../../store/actions';
-import {clearToLocalStorage} from '../../thunks';
+import {clearLoginToLocalStorage} from '../../thunks';
 
 const SignIn = ({className}) => {
     const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const SignIn = ({className}) => {
 
     const onSignInClick = () => {
         if (email) {
-            dispatch(clearToLocalStorage());
+            dispatch(clearLoginToLocalStorage());
         } else {
             dispatch(changeVisibilityFormLogin(true));
         }

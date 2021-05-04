@@ -19,7 +19,7 @@ const Slider = ({className, children}) => {
     };
 
     useEffect(() => {
-        setTimeoutId(setTimeout(() => setNewCurrentChild(1), 4000));
+        setTimeoutId(setTimeout(() => setNewCurrentChild(1), 40000));
     }, [currentChild]);
 
     return (

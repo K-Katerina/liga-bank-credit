@@ -42,7 +42,7 @@ const Modal = ({children, closeModal}) => {
 
 Modal.propTypes = {
     closeModal: PropTypes.func,
-    children: PropTypes.arrayOf(PropTypes.node)
+    children: PropTypes.object
 };
 
 export {Modal};

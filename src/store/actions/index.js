@@ -58,3 +58,7 @@ export const saveData = (payload) => ({
     type: Actions.SAVE_DATA,
     payload: payload
 });
+
+export const deleteData = () => ({
+    type: Actions.DELETE_DATA,
+});

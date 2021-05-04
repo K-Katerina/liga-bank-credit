@@ -10,12 +10,13 @@ import {
     changeCost,
     changeFee,
     changePeriod,
-    changeUseCapital
+    changeUseCapital, changeUseComprehensiveCover, changeUseInsurance, deleteData
 } from '../../store/actions';
 
 const CalculatorOptions = ({className, onSuggestButtonClick}) => {
     const dispatch = useDispatch();
     const target = useSelector(state => state.target);
+    const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
 
     const creditSum = useSelector(state => state.cost - state.fee - MortgageConsts.PARENT_CAPITAL * (state.useCapital && state.target === CreditTarget.MORTGAGE));
     const minCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT ? AutoCreditConsts.MIN_CREDIT : MortgageConsts.MIN_CREDIT);
@@ -25,10 +26,14 @@ const CalculatorOptions = ({className, onSuggestButtonClick}) => {
     }, [target]);
 
     const resetForm = () => {
-        dispatch(changeCost(0));
-        dispatch(changeFee(0));
-        dispatch(changePeriod(1));
+        const cost = isAutoCredit ? AutoCreditConsts.MIN_COST : MortgageConsts.MIN_COST;
+        dispatch(changeCost(cost));
+        dispatch(changeFee(Math.floor((isAutoCredit ? AutoCreditConsts.MIN_FEE : MortgageConsts.MIN_FEE) * cost) / 100));
+        dispatch(changePeriod(isAutoCredit ? AutoCreditConsts.MIN_PERIOD : MortgageConsts.MIN_PERIOD));
         dispatch(changeUseCapital(false));
+        dispatch(changeUseComprehensiveCover(false));
+        dispatch(changeUseInsurance(false));
+        dispatch(deleteData());
     };
 
     return (

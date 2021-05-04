@@ -16,6 +16,11 @@
     flex-direction: row;
   }
 
+  @media (min-width: $desktop-width) {
+    justify-content: start;
+    padding-left: 50px;
+  }
+
   &--column {
     flex-direction: column;
     flex-wrap: nowrap;

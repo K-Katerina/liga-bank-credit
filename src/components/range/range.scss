@@ -1,6 +1,7 @@
 .range {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .range__slider {
@@ -40,4 +41,6 @@
 
 .range__sublabel {
   @include sublabel;
+  display: flex;
+  justify-content: space-between;
 }

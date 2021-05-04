@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 import {AutoCreditConsts, CreditTarget, MortgageConsts, MOUNTS_IN_YEAR, PART_PAYMENT_OF_INCOME} from '../../const';
-import {getWordForm} from '../../utils';
+import {getWordFormWithValue} from '../../utils';
 import {Button} from '../button/button';
 
 const Suggest = ({className, onClick}) => {
@@ -14,7 +14,6 @@ const Suggest = ({className, onClick}) => {
     const useComprehensiveCover = useSelector(state => state.useComprehensiveCover);
     const useInsurance = useSelector(state => state.useInsurance);
     const period = useSelector(state => state.period);
-
 
     const getPercents = () => {
         let percent = AutoCreditConsts.MAX_INTEREST_RATE;
@@ -48,7 +47,6 @@ const Suggest = ({className, onClick}) => {
         return Math.floor(getMonthlyPayment() * 100 / PART_PAYMENT_OF_INCOME);
     };
 
-
     return (
         <section className={`suggest ${className}`}>
             <h3 className="suggest__subtitle">Наше предложение</h3>
@@ -69,13 +67,13 @@ const Suggest = ({className, onClick}) => {
                 </div>
                 <div className="suggest__bottom">
                     <p className="suggest__result">
-                        {getWordForm(getMonthlyPayment(), ['рубль', 'рубля', 'рублей'])}
+                        {getWordFormWithValue(getMonthlyPayment(), ['рубль', 'рубля', 'рублей'])}
                         <small className="suggest__desc">
                             Ежемесячный платеж
                         </small>
                     </p>
                     <p className="suggest__result">
-                        {getWordForm(getRequiredIncome(), ['рубль', 'рубля', 'рублей'])}
+                        {getWordFormWithValue(getRequiredIncome(), ['рубль', 'рубля', 'рублей'])}
                         <small className="suggest__desc">
                             Необходимый доход
                         </small>

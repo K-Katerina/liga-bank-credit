@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {CreditTarget} from '../../const';
-import {getWordForm} from '../../utils';
+import {AutoCreditConsts, CreditTarget, MortgageConsts, STEP_FEE} from '../../const';
+import {getWordForm, getWordFormWithValue} from '../../utils';
 import {InputCheckbox} from '../input-checkbox/input-checkbox';
 import {InputWithButtons} from '../input-with-buttons/input-with-buttons';
 import {Range} from '../range/range';
@@ -23,12 +23,30 @@ const CalculatorInputs = ({className}) => {
     const useInsurance = useSelector(state => state.useInsurance);
     const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
 
+    const minCost = isAutoCredit ? AutoCreditConsts.MIN_COST : MortgageConsts.MIN_COST;
+    const maxCost = isAutoCredit ? AutoCreditConsts.MAX_COST : MortgageConsts.MAX_COST;
+    const minFee = isAutoCredit ? AutoCreditConsts.MIN_FEE : MortgageConsts.MIN_FEE;
+    const maxFee = isAutoCredit ? AutoCreditConsts.MAX_FEE : MortgageConsts.MAX_FEE;
+    const minPeriod = isAutoCredit ? AutoCreditConsts.MIN_PERIOD : MortgageConsts.MIN_PERIOD;
+    const maxPeriod = isAutoCredit ? AutoCreditConsts.MAX_PERIOD : MortgageConsts.MAX_PERIOD;
+    const stepCost = isAutoCredit ? AutoCreditConsts.STEP_COST : MortgageConsts.STEP_COST;
+
+    const getPercentOfCost = (value) => Math.floor((value * 100) / cost);
+    const getCostOfPercent = (percent, value = cost) => Math.floor((percent * value) / 100);
+
     const onCostChange = (value) => {
         dispatch(changeCost(value));
+        dispatch(changeFee(getCostOfPercent(minFee, value)));
     };
 
     const onFeeChange = (value) => {
-        dispatch(changeFee(value));
+        if (getPercentOfCost(value) > maxFee) {
+            dispatch(changeFee(getCostOfPercent(maxFee)));
+        } else if (getPercentOfCost(value) < minFee) {
+            dispatch(changeFee(getCostOfPercent(minFee)));
+        } else {
+            dispatch(changeFee(value));
+        }
     };
 
     const onPeriodChange = (value) => {
@@ -53,25 +71,36 @@ const CalculatorInputs = ({className}) => {
             <div className="calculator-inputs__subtitle">
                 <InputWithButtons className="calculator-inputs__price"
                                   value={cost}
+                                  min={minCost}
+                                  max={maxCost}
+                                  mask={getWordForm(fee, [' рубль', ' рубля', ' рублей'])}
+                                  step={stepCost}
                                   onChange={(value) => onCostChange(value)}
                                   label={`Стоимость ${isAutoCredit ? 'автомобиля' : 'недвижимости'}`}
-                                  sublabel={isAutoCredit ? 'От 500 000 до 5 000 000 рублей' : 'От 1 200 000 до 25 000 000 рублей'}/>
+                                  sublabel={`От ${minCost.toLocaleString()} до ${maxCost.toLocaleString()} рублей`}/>
 
-                <Range onChange={(evt) => onFeeChange(evt.target.value)}
+                <Range onChangeInput={(evt) => onFeeChange(evt.target.value)}
+                       onChangeRange={(evt) => onFeeChange(getCostOfPercent(evt.target.value))}
                        className="calculator-inputs__range"
+                       range={getPercentOfCost(fee)}
                        value={fee}
-                       min={1}
-                       max={100}
+                       mask={getWordForm(fee, ['рубль', 'рубля', 'рублей'])}
+                       min={minFee}
+                       max={maxFee}
+                       step={STEP_FEE}
                        label="Первоначальный взнос"
-                       sublabel={`${fee} %`}/>
+                       sublabel={`${getPercentOfCost(fee)}%`}/>
 
-                <Range onChange={(evt) => onPeriodChange(evt.target.value)}
+                <Range onChangeInput={(evt) => onPeriodChange(evt.target.value)}
+                       onChangeRange={(evt) => onPeriodChange(evt.target.value)}
                        className="calculator-inputs__range"
                        value={period}
-                       min={5}
-                       max={30}
+                       range={period}
+                       min={minPeriod}
+                       max={maxPeriod}
+                       mask={getWordForm(period, ['год', 'года', 'лет'])}
                        label="Срок кредитования"
-                       sublabel={getWordForm(period, ['год', 'года', 'лет'])}/>
+                       sublabel={<><span>{getWordFormWithValue(minPeriod, ['год', 'года', 'лет'])}</span><span>{getWordFormWithValue(maxPeriod, ['год', 'года', 'лет'])}</span></>}/>
 
                 {isAutoCredit
                     ? <>

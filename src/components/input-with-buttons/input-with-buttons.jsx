@@ -7,14 +7,14 @@ const NamesButton = {
     MINUS: 'MINUS',
 };
 
-const InputWithButtons = ({className, onChange, value, ...rest}) => {
+const InputWithButtons = ({className, onChange, step, value, ...rest}) => {
 
     const onValueChange = (target) => {
         switch (target) {
             case NamesButton.MINUS:
-                return onChange(Number(value) - 10);
+                return onChange(Number(value) - step);
             case NamesButton.PLUS:
-                return onChange(Number(value) + 10);
+                return onChange(Number(value) + step);
             default:
                 return onChange(target);
         }
@@ -33,7 +33,8 @@ InputWithButtons.propTypes = {
     className: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    label: PropTypes.string
+    label: PropTypes.string,
+    step: PropTypes.number
 };
 
 export {InputWithButtons};

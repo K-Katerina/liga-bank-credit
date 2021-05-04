@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {PASSWORD_LENGTH} from '../../const';
 import {changeVisibilityFormLogin} from '../../store/actions';
-import {saveToLocalStorage} from '../../thunks';
+import {saveLoginToLocalStorage} from '../../thunks';
+import {getWordFormWithValue} from '../../utils';
 import {Button} from '../button/button';
 import {Input} from '../input/input';
 import {Logo} from '../logo/logo';
@@ -16,15 +18,15 @@ const FormLogin = ({className}) => {
     const [isVisiblePassword, setIsVisiblePassword] = useState(false);
     const dispatch = useDispatch();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
         const emailInvalid = validateField('email', email);
         setErrorEmail(emailInvalid);
         const passwordInvalid = validateField('password', password);
         setErrorPassword(passwordInvalid);
 
         if (!emailInvalid && !passwordInvalid) {
-            dispatch(saveToLocalStorage({email, password}));
+            dispatch(saveLoginToLocalStorage({email, password}));
             closeForm();
         }
     };
@@ -43,8 +45,8 @@ const FormLogin = ({className}) => {
                 return value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
                     ? '' : 'Email введен некорректно';
             case 'password':
-                return value.match(/^[A-Za-z0-9]+$/i) && value.length >= 8
-                    ? '' : 'Пароль введен некорректно';
+                return value.length >= PASSWORD_LENGTH
+                    ? '' : `Пароль должен быть больше ${getWordFormWithValue(PASSWORD_LENGTH, ['символ', 'символа', 'символов'])}`;
             default:
                 break;
         }
@@ -52,7 +54,7 @@ const FormLogin = ({className}) => {
 
     return (
         <Modal closeModal={() => closeForm()}>
-            <form className={`form-login ${className}`} noValidate onSubmit={(event) => handleSubmit(event)}>
+            <form className={`form-login ${className}`} noValidate onSubmit={(evt) => handleSubmit(evt)}>
                     <h2 className="visually-hidden">Введите e-mail и пароль</h2>
                     <div className="form-login__wrapper">
                         <Logo className="form-login__logo"/>

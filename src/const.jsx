@@ -11,10 +11,12 @@ export const Actions = {
     CHANGE_USE_COMPREHENSIVE_COVER: 'CHANGE_USE_COMPREHENSIVE_COVER',
     LOGIN: 'LOGIN',
     LOGOUT: 'LOGOUT',
-    SAVE_DATA: 'SAVE_DATA'
+    SAVE_DATA: 'SAVE_DATA',
+    DELETE_DATA: 'DELETE_DATA'
 };
 
 export const MOUNTS_IN_YEAR = 12;
+export const PASSWORD_LENGTH = 5;
 
 export const Tabs = {
     DEPOSITS: 'DEPOSITS',
@@ -41,6 +43,7 @@ export const CreditTargetNames = {
 };
 
 export const PART_PAYMENT_OF_INCOME = 45;
+export const STEP_FEE = 5;
 
 export const MortgageConsts = {
     MIN_COST: 1200000,
@@ -49,10 +52,9 @@ export const MortgageConsts = {
     PARENT_CAPITAL: 470000,
     MIN_FEE: 10,
     MAX_FEE: 100,
-    STEP_FEE: 5,
-    MIN_CREDIT: 500000,
     MIN_PERIOD: 5,
     MAX_PERIOD: 30,
+    MIN_CREDIT: 500000,
     MIN_INTEREST_RATE: 8.5,
     MAX_INTEREST_RATE: 9.4,
     PERCENT_FEE_OF_COST_BORDER: 15
@@ -64,10 +66,9 @@ export const AutoCreditConsts = {
     STEP_COST: 50000,
     MIN_FEE: 20,
     MAX_FEE: 100,
-    STEP_FEE: 5,
-    MIN_CREDIT: 200000,
     MIN_PERIOD: 1,
     MAX_PERIOD: 5,
+    MIN_CREDIT: 200000,
     MIN_INTEREST_RATE: 15,
     MAX_INTEREST_RATE: 16,
     MAX_INTEREST_RATE_ADD: 8.5,
