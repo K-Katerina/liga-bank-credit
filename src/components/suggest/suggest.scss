@@ -1,6 +1,11 @@
 .suggest {
   background-color: $color-service--lightest;
-  padding: 55px;
+  padding: 23px;
+  padding-left: 10px;
+
+  @media (min-width: $tablet-width) {
+    padding: 55px;
+  }
 
   @media (min-width: $desktop-width) {
     margin-left: 70px;
@@ -8,19 +13,35 @@
   }
 }
 
+.suggest .suggest__subtitle {
+  @media (max-width: $tablet-width-only) {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
 .suggest__wrapper {
   display: flex;
   flex-direction: column;
-  margin-bottom: 12px;
+  margin-bottom: 26px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 12px;
+  }
 }
 
 .suggest__wrapper p {
   width: 100%;
-  max-width: 320px;
   overflow: hidden;
+  max-width: 230px;
 
   @media (min-width: $tablet-width) {
     min-width: 190px;
+    max-width: 230px;
+  }
+
+  @media (min-width: $desktop-width) {
+    max-width: 320px;
   }
 }
 
@@ -36,10 +57,14 @@
 
 .suggest__result {
   flex-grow: 1;
-  padding: 5px 5px 23px;
+  padding: 5px 5px 3px;
   font-size: 22px;
   line-height: 30px;
   font-weight: 500;
+
+  @media (min-width: $tablet-width) {
+    padding: 5px 5px 23px;
+  }
 
   &:first-child {
     @media (min-width: $tablet-width) {

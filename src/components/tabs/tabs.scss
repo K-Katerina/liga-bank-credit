@@ -2,13 +2,10 @@
 @import "../../scss/colors";
 
 .tabs {
-  margin-bottom: 40px;
+  margin-bottom: 55px;
 
   position: relative;
   min-width: 320px;
-
-  @media (min-width: $tablet-width) {
-  }
 
   @media (min-width: $desktop-width) {
     padding: 0 98px;
@@ -20,15 +17,6 @@
 
 .tabs__content {
   background-color: $color-service--lightest;
-  padding: 0 30px;
-
-  @media (max-width: $mobile-width-only) {
-    min-height: 462px;
-  }
-
-  @media (max-width: $tablet-width-only) {
-    min-height: 480px;
-  }
 }
 
 .tabs__wrapper {

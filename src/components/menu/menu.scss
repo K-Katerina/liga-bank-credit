@@ -29,7 +29,11 @@
   }
 
   &--column .menu__item {
-    padding: 5px 14px;
+    padding: 5px 0;
+
+    @media (min-width: $desktop-width) {
+      padding: 5px 14px;
+    }
   }
 
   &--column .menu__item--only-footer {

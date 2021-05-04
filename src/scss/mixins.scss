@@ -26,7 +26,7 @@
   background-color: $color-main;
   max-width: 234px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 25px;
   font-weight: 500;
 
@@ -59,6 +59,19 @@
     background-color: $color-service--light;
     color: $color-service--lighten;
     cursor: not-allowed;
+  }
+
+  @media (max-width: $mobile-width-only) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 16px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
   }
 }
 

@@ -1,4 +1,12 @@
 .calculator-inputs__price,
 .calculator-inputs__range {
-  margin-bottom: 22px;
+  margin-bottom: 12px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 22px;
+  }
 }

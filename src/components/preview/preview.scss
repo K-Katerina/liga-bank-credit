@@ -38,12 +38,15 @@
   margin-bottom: 20px;
 
   @media (min-width: $tablet-width) {
-    font-size: 54px;
-    line-height: 64px;
-    margin-bottom: 34px;
+    font-size: 46px;
+    line-height: 53px;
+    margin-bottom: 23px;
   }
 
   @media (min-width: $desktop-width) {
+    font-size: 54px;
+    line-height: 64px;
+    margin-bottom: 34px;
   }
 
     &--light {
@@ -76,11 +79,11 @@
   position: relative;
   z-index: 15;
   margin-left: 15px;
-  padding-top: 18px;
+  padding-top: 36px;
 
   @media (min-width: $tablet-width) {
     margin-left: 86px;
-    padding-top: 76px;
+    padding-top: 62px;
   }
 
   @media (min-width: $desktop-width) {

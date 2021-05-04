@@ -4,7 +4,11 @@
   list-style: none;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: start;
+
+  @media (min-width: $desktop-width) {
+    justify-content: space-around;
+  }
 }
 
 .social__item {

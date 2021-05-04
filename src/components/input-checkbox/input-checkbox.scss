@@ -2,6 +2,11 @@
   @include label;
   padding-left: 20px;
   position: relative;
+
+  @media (max-width: $mobile-width-only) {
+    font-size: 14px;
+    line-height: 19px;
+  }
 }
 
 .input-checkbox input {
