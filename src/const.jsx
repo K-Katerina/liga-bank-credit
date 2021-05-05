@@ -1,5 +1,4 @@
 export const Actions = {
-    GET_DATA: 'GET_DATA',
     CHANGE_VISIBILITY_MENU: 'CHANGE_VISIBILITY_MENU',
     CHANGE_VISIBILITY_FORM_LOGIN: 'CHANGE_VISIBILITY_FORM_LOGIN',
     CHANGE_TARGET: 'CHANGE_TARGET',
@@ -17,6 +16,7 @@ export const Actions = {
 
 export const MOUNTS_IN_YEAR = 12;
 export const PASSWORD_LENGTH = 5;
+export const SLIDER_TIMEOUT = 4000;
 
 export const Tabs = {
     DEPOSITS: 'DEPOSITS',

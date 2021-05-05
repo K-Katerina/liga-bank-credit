@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {saveUserDataToLocalStorage} from '../../thunks';
+import {saveUserDataToLocalStorage} from '../../local-storage-service';
 import {CalculatorOptions} from '../calculator-options/calculator-options';
 import {SuccessModal} from '../success-modal/success-modal';
 import {Summary} from '../summary/summary';
@@ -36,8 +36,8 @@ const Calculator = ({className}) => {
         dispatch(saveData({
             count: data.count + 1
         }));
-        dispatch(saveUserDataToLocalStorage({name, phone, email}));
-
+        saveUserDataToLocalStorage({name, phone, email});
+        dispatch(saveData({email, phone, name}));
         setSuccessIsOpen(true);
         setIsOpenForm(false);
         dispatch(changeTarget(null));
@@ -56,7 +56,7 @@ const Calculator = ({className}) => {
 };
 
 Calculator.propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired
 };
 
 export {Calculator};

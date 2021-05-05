@@ -1,7 +1,5 @@
 import {Actions} from '../../const';
 
-const localEmail = localStorage.getItem('email');
-
 const initialState = {
     menuIsOpen: false,
     target: null,
@@ -12,17 +10,18 @@ const initialState = {
     useCapital: false,
     useInsurance: false,
     useComprehensiveCover: false,
-    email: localEmail,
-    data: { count: 1 }
+    email: localStorage.getItem('login'),
+    isLoggedIn: !!localStorage.getItem('password'),
+    data: {
+        count: 1,
+        email: localStorage.getItem('email'),
+        phone: localStorage.getItem('phone'),
+        name: localStorage.getItem('name')
+    }
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case Actions.GET_DATA:
-            return {
-                ...state,
-                data: action.payload
-            };
         case Actions.CHANGE_VISIBILITY_MENU:
             return {
                 ...state,
@@ -71,12 +70,13 @@ const reducer = (state = initialState, action) => {
         case Actions.LOGIN:
             return {
                 ...state,
-                email: action.payload
+                email: action.payload,
+                isLoggedIn: true
             };
         case Actions.LOGOUT:
             return {
                 ...state,
-                email: null
+                isLoggedIn: false
             };
         case Actions.SAVE_DATA:
             return {
@@ -86,7 +86,7 @@ const reducer = (state = initialState, action) => {
         case Actions.DELETE_DATA:
             return {
                 ...state,
-                data: {count: state.data.count}
+                data: { count: state.data.count, email: state.data.email, phone: state.data.phone, name: state.data.name}
             };
         default:
             return state;

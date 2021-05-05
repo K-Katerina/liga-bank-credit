@@ -1,16 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
-import {AutoCreditConsts, CreditTarget, MortgageConsts, MOUNTS_IN_YEAR, PART_PAYMENT_OF_INCOME} from '../../const';
-import {getWordFormWithValue} from '../../utils';
+import {
+    AutoCreditConsts,
+    CreditTarget,
+    MortgageConsts,
+    MOUNTS_IN_YEAR,
+    PART_PAYMENT_OF_INCOME
+} from '../../const';
+import {getValidValue, getWordFormWithValue} from '../../utils';
 import {Button} from '../button/button';
 
 const Suggest = ({className, onClick}) => {
-
     const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
-    const creditSum = useSelector(state => state.cost - state.fee - MortgageConsts.PARENT_CAPITAL * (state.useCapital && state.target === CreditTarget.MORTGAGE));
+    const minCredit = isAutoCredit ? AutoCreditConsts.MIN_CREDIT : MortgageConsts.MIN_CREDIT;
+    const minCost = isAutoCredit ? AutoCreditConsts.MIN_COST : MortgageConsts.MIN_COST;
+    const maxCost = isAutoCredit ? AutoCreditConsts.MAX_COST : MortgageConsts.MAX_COST;
     const cost = useSelector(state => state.cost);
     const fee = useSelector(state => state.fee);
+    const creditSum = useSelector(state => getValidValue(cost, minCost, maxCost) - fee - MortgageConsts.PARENT_CAPITAL *
+                                    (state.useCapital && state.target === CreditTarget.MORTGAGE)) || minCredit;
     const useComprehensiveCover = useSelector(state => state.useComprehensiveCover);
     const useInsurance = useSelector(state => state.useInsurance);
     const period = useSelector(state => state.period);
@@ -39,12 +48,13 @@ const Suggest = ({className, onClick}) => {
     };
 
     const getMonthlyPayment = () => {
-        const interestRate = (getPercents() / 100) / 12;
-        return Math.floor(cost * (interestRate + (interestRate/(Math.pow(1 + interestRate,period * MOUNTS_IN_YEAR) - 1))));
+        const interestRate = (getPercents() / 100) / MOUNTS_IN_YEAR;
+        return Math.ceil(creditSum *
+            (interestRate + (interestRate/(Math.pow(1 + interestRate,period * MOUNTS_IN_YEAR) - 1))));
     };
 
     const getRequiredIncome = () => {
-        return Math.floor(getMonthlyPayment() * 100 / PART_PAYMENT_OF_INCOME);
+        return Math.ceil(getMonthlyPayment() * 100 / PART_PAYMENT_OF_INCOME);
     };
 
     return (

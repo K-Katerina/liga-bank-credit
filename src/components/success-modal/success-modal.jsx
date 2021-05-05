@@ -12,8 +12,8 @@ const SuccessModal = ({className, changeVisibilitySuccess}) => {
 };
 
 SuccessModal.propTypes = {
-    className: PropTypes.string,
-    changeVisibilitySuccess: PropTypes.func
+    className: PropTypes.string.isRequired,
+    changeVisibilitySuccess: PropTypes.func.isRequired
 };
 
 export {SuccessModal};

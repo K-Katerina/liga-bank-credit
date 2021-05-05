@@ -31,7 +31,7 @@ const InputWithButtons = ({className, onChange, step, value, ...rest}) => {
 
 InputWithButtons.propTypes = {
     className: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string,
     step: PropTypes.number

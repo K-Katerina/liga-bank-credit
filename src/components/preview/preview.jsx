@@ -12,7 +12,12 @@ const Preview = ({className, title, subtitle, button, img, isLight}) => {
                     {title}
                     <span className={'preview__subtitle'}>{subtitle}</span>
                 </h1>
-                {button && <a href={button.href} className={`preview__button ${isLight && 'preview__button--light'}`}>{button.title}</a>}
+                {button &&
+                    <a href={button.href}
+                       className={`preview__button ${isLight && 'preview__button--light'}`}>
+                        {button.title}
+                    </a>
+                }
             </div>
             <div className="preview__right">
                 <img className="preview__img"
@@ -24,44 +29,50 @@ const Preview = ({className, title, subtitle, button, img, isLight}) => {
     );
 };
 
-const PreviewMain = ({className}) => <Preview className={className}
-                                              title="Лига Банк"
-                                              subtitle="Кредиты на любой случай"
-                                              isLight={true}
-                                              button={{
-                                                title: 'Рассчитать кредит',
-                                                href: '#calculator',
-                                              }}
-                                              img={{
-                                                alt: 'Пример белой карты клиента нашего банка',
-                                                src: main
-                                              }}/>;
+const PreviewMain = ({className}) => (
+    <Preview className={className}
+             title="Лига Банк"
+             subtitle="Кредиты на любой случай"
+             isLight={true}
+             button={{
+                title: 'Рассчитать кредит',
+                href: '#calculator',
+             }}
+             img={{
+                alt: 'Пример белой карты клиента нашего банка',
+                src: main
+             }}/>
+);
 
-const PreviewMan = ({className}) => <Preview className={className}
-                                             title="Лига Банк"
-                                             subtitle="Ваша уверенность в&nbsp;завтрашнем дне"
-                                             isLight={false}
-                                             img={{
-                                               alt: 'Клиент нашего банка',
-                                               src: man
-                                             }}/>;
+const PreviewMan = ({className}) => (
+    <Preview className={className}
+             title="Лига Банк"
+             subtitle="Ваша уверенность в&nbsp;завтрашнем дне"
+             isLight={false}
+             img={{
+               alt: 'Клиент нашего банка',
+               src: man
+             }}/>
+);
 
-const PreviewWoman = ({className}) => <Preview className={className}
-                                               title="Лига Банк"
-                                               subtitle="Всегда рядом"
-                                               isLight={false}
-                                               button={{
-                                                 title: 'Найти отделение',
-                                                 href: '#map'
-                                               }}
-                                               img={{
-                                                 alt: 'Клиент нашего банка',
-                                                 src: woman
-                                               }}/>;
+const PreviewWoman = ({className}) => (
+    <Preview className={className}
+             title="Лига Банк"
+             subtitle="Всегда рядом"
+             isLight={false}
+             button={{
+                title: 'Найти отделение',
+                href: '#map'
+             }}
+             img={{
+                alt: 'Клиент нашего банка',
+                src: woman
+             }}/>
+);
 
 Preview.propTypes = {
-    className: PropTypes.string,
-    title: PropTypes.string,
+    className: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     isLight: PropTypes.bool,
     subtitle: PropTypes.string,
     button: PropTypes.shape({title: PropTypes.string, href: PropTypes.string}),
@@ -69,15 +80,15 @@ Preview.propTypes = {
 };
 
 PreviewMain.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string.isRequired
 };
 
 PreviewMan.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string.isRequired
 };
 
 PreviewWoman.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string.isRequired
 };
 
 export {PreviewMain, PreviewMan, PreviewWoman};

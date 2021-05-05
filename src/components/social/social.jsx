@@ -62,7 +62,7 @@ const Social = ({className}) => {
 };
 
 Social.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string.isRequired
 };
 
 export {Social};

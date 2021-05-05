@@ -8,9 +8,9 @@ const Header = () => {
         <header className="header">
             <MainNav className="header__nav"/>
             <Slider className="header__slider">
-                <PreviewMain/>
-                <PreviewMan/>
-                <PreviewWoman/>
+                <PreviewMain className="header__preview-main"/>
+                <PreviewMan className="header__preview-man"/>
+                <PreviewWoman className="header__preview-woman"/>
             </Slider>
         </header>
     );

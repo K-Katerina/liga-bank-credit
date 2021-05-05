@@ -39,7 +39,7 @@ const Footer = () => {
                         <a href="tel:88001112233" className="footer__tel">8 800 111 22 33</a>
                         <p className="footer__desk">Бесплатный для&nbsp;всех городов России</p>
                     </div>
-                    <Social className="footer__social social"/>
+                    <Social className="footer__social"/>
                 </div>
             </div>
         </footer>

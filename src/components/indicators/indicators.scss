@@ -3,7 +3,7 @@
   flex-direction: row;
   position: absolute;
   list-style: none;
-  bottom: 5%;
+  bottom: 6%;
   left: calc(50% - 24px);
 }
 
@@ -12,12 +12,12 @@
   width: 10px;
   border-radius: 50%;
   z-index: 30;
-  background-color: $color-service--lightest;
-  border: 1px $color-service--lighten solid;
+  background-color: $color-main--dark;
+  border: 1px $color-main--dark solid;
   margin: 3px;
 
   &--active {
-    background-color: $color-main--dark;
-    border: 1px $color-main--dark solid;
+    background-color: $color-service--lightest;
+    border: 1px $color-service--lighten solid;
   }
 }

@@ -28,7 +28,7 @@ const CalculatorOptions = ({className, onSuggestButtonClick}) => {
     const resetForm = () => {
         const cost = isAutoCredit ? AutoCreditConsts.MIN_COST : MortgageConsts.MIN_COST;
         dispatch(changeCost(cost));
-        dispatch(changeFee(Math.floor((isAutoCredit ? AutoCreditConsts.MIN_FEE : MortgageConsts.MIN_FEE) * cost) / 100));
+        dispatch(changeFee(Math.ceil((isAutoCredit ? AutoCreditConsts.MIN_FEE : MortgageConsts.MIN_FEE) * cost) / 100));
         dispatch(changePeriod(isAutoCredit ? AutoCreditConsts.MIN_PERIOD : MortgageConsts.MIN_PERIOD));
         dispatch(changeUseCapital(false));
         dispatch(changeUseComprehensiveCover(false));
@@ -60,7 +60,7 @@ const CalculatorOptions = ({className, onSuggestButtonClick}) => {
 
 CalculatorOptions.propTypes = {
     className: PropTypes.string.isRequired,
-    onSuggestButtonClick: PropTypes.func
+    onSuggestButtonClick: PropTypes.func.isRequired
 };
 
 export {CalculatorOptions};

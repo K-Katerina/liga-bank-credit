@@ -8,8 +8,8 @@ const Input = (props) => {
               {props.label}
             </span>
             <input {...props} className="input__text" type={props.type || 'number'}/>
-            <span className="input__sublabel">
-              {props.sublabel}
+            <span className="input__desc">
+              {props.desc}
             </span>
         </label>
     );
@@ -17,10 +17,10 @@ const Input = (props) => {
 
 Input.propTypes = {
     className: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string,
-    sublabel: PropTypes.string,
+    desc: PropTypes.string,
     type: PropTypes.string
 };
 

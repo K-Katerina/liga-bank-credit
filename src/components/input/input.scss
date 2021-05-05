@@ -8,7 +8,7 @@
   &--error .input__text {
     border-color: $color-error;
   }
-  &--error .input__sublabel {
+  &--error .input__desc {
    color: $color-error;
   }
 }
@@ -17,8 +17,8 @@
   @include label;
 }
 
-.input__sublabel {
-  @include sublabel;
+.input__desc {
+  @include desc;
 }
 
 .input__text {

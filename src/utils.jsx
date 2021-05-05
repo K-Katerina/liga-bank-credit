@@ -13,6 +13,16 @@ export const getWordForm = (n, array) => {
     }
 };
 
+export const getValidValue = (value, min, max) => {
+    let validValue = Number.parseFloat(value) || min;
+    if (validValue < min) {
+        validValue = min;
+    } else if (validValue > max) {
+        validValue = max;
+    }
+    return validValue;
+};
+
 export const getWordFormWithValue = (n, array) => n.toLocaleString() + ' ' + getWordForm(n, array);
 
 export const range = (count) => {

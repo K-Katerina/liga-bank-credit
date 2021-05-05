@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {AutoCreditConsts, CreditTarget, MortgageConsts, STEP_FEE} from '../../const';
-import {getWordForm, getWordFormWithValue} from '../../utils';
+import {getValidValue, getWordForm, getWordFormWithValue} from '../../utils';
 import {InputCheckbox} from '../input-checkbox/input-checkbox';
 import {InputWithButtons} from '../input-with-buttons/input-with-buttons';
 import {Range} from '../range/range';
@@ -30,21 +30,54 @@ const CalculatorInputs = ({className}) => {
     const minPeriod = isAutoCredit ? AutoCreditConsts.MIN_PERIOD : MortgageConsts.MIN_PERIOD;
     const maxPeriod = isAutoCredit ? AutoCreditConsts.MAX_PERIOD : MortgageConsts.MAX_PERIOD;
     const stepCost = isAutoCredit ? AutoCreditConsts.STEP_COST : MortgageConsts.STEP_COST;
+    const minCredit = isAutoCredit ? AutoCreditConsts.MIN_CREDIT : MortgageConsts.MIN_CREDIT;
+    const maxFeeCost = cost - minCredit - MortgageConsts.PARENT_CAPITAL *
+        (useCapital && !isAutoCredit);
 
-    const getPercentOfCost = (value) => Math.floor((value * 100) / cost);
-    const getCostOfPercent = (percent, value = cost) => Math.floor((percent * value) / 100);
+    const getPercentOfCost = (value) => Math.ceil((value * 100) / cost) || minFee;
+    const getCostOfPercent = (percent, value = cost) => Math.ceil((percent * value) / 100);
+
+    const [percent, setPercent] = useState(minFee);
+    const [errorCost, setErrorCost] = useState(false);
 
     const onCostChange = (value) => {
-        dispatch(changeCost(value));
-        dispatch(changeFee(getCostOfPercent(minFee, value)));
+        const validCost = Number.parseFloat(value);
+        if (isFinite(validCost)) {
+            dispatch(changeCost(validCost));
+            setErrorCost(false);
+        }
+        setPercent(minFee);
+        if (isFinite(Number.parseFloat(value)) && value > minCost && value < maxCost) {
+            dispatch(changeFee(getCostOfPercent(minFee, value)));
+        } else {
+            dispatch(changeFee(getCostOfPercent(minFee, minCost)));
+        }
+    };
+
+    const onCostValidate = () => {
+        if (!isFinite(Number.parseFloat(cost)) || cost < minCost || cost > maxCost) {
+            dispatch(changeCost('Некорректное значение'));
+            setErrorCost(true);
+        }
     };
 
     const onFeeChange = (value) => {
         dispatch(changeFee(value));
+        setPercent(getPercentOfCost(value));
+    };
+
+    const onFeeValidate = () => {
+        const validFee = getValidValue(fee, getCostOfPercent(minFee, cost), maxFeeCost);
+        dispatch(changeFee(validFee));
+        setPercent(getPercentOfCost(validFee));
     };
 
     const onPeriodChange = (value) => {
         dispatch(changePeriod(value));
+    };
+
+    const onPeriodValidate = () => {
+        dispatch(changePeriod(getValidValue(period, minPeriod, maxPeriod)));
     };
 
     const onUseCapitalClick = (value) => {
@@ -63,30 +96,34 @@ const CalculatorInputs = ({className}) => {
         <section className={`${className} calculator-inputs`}>
             <h3 className="calculator-inputs__parameter">Шаг 2. Введите параметры кредита</h3>
             <div className="calculator-inputs__subtitle">
-                <InputWithButtons className="calculator-inputs__price"
+                <InputWithButtons className={`calculator-inputs__price ${errorCost && 'input--error'}`}
                                   value={cost}
                                   min={minCost}
                                   max={maxCost}
                                   mask={getWordForm(fee, [' рубль', ' рубля', ' рублей'])}
                                   step={stepCost}
                                   onChange={(value) => onCostChange(value)}
+                                  onBlur={() => onCostValidate()}
+                                  type="string"
                                   label={`Стоимость ${isAutoCredit ? 'автомобиля' : 'недвижимости'}`}
-                                  sublabel={`От ${minCost.toLocaleString()} до ${maxCost.toLocaleString()} рублей`}/>
+                                  desc={`${errorCost ? 'Введите сумму от' : 'От'} ${minCost.toLocaleString()} до ${maxCost.toLocaleString()} рублей`}/>
 
                 <Range onChangeInput={(evt) => onFeeChange(evt.target.value)}
                        onChangeRange={(evt) => onFeeChange(getCostOfPercent(evt.target.value))}
+                       onBlur={() => onFeeValidate()}
                        className="calculator-inputs__range"
-                       range={getPercentOfCost(fee)}
+                       range={percent}
                        value={fee}
                        mask={getWordForm(fee, ['рубль', 'рубля', 'рублей'])}
                        min={minFee}
                        max={maxFee}
                        step={STEP_FEE}
                        label="Первоначальный взнос"
-                       sublabel={`${getPercentOfCost(fee)}%`}/>
+                       desc={`${percent > maxFee ? maxFee : percent}%`}/>
 
                 <Range onChangeInput={(evt) => onPeriodChange(evt.target.value)}
                        onChangeRange={(evt) => onPeriodChange(evt.target.value)}
+                       onBlur={() => onPeriodValidate()}
                        className="calculator-inputs__range"
                        value={period}
                        range={period}
@@ -94,7 +131,7 @@ const CalculatorInputs = ({className}) => {
                        max={maxPeriod}
                        mask={getWordForm(period, ['год', 'года', 'лет'])}
                        label="Срок кредитования"
-                       sublabel={<><span>{getWordFormWithValue(minPeriod, ['год', 'года', 'лет'])}</span><span>{getWordFormWithValue(maxPeriod, ['год', 'года', 'лет'])}</span></>}/>
+                       desc={<><span>{getWordFormWithValue(minPeriod, ['год', 'года', 'лет'])}</span><span>{getWordFormWithValue(maxPeriod, ['год', 'года', 'лет'])}</span></>}/>
 
                 {isAutoCredit
                     ? <>
@@ -109,7 +146,7 @@ const CalculatorInputs = ({className}) => {
 };
 
 CalculatorInputs.propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired
 };
 
 export {CalculatorInputs};

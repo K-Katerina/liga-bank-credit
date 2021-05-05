@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {SLIDER_TIMEOUT} from '../../const';
 import Indicators from '../indicators/indicators';
 
 const Slider = ({className, children}) => {
@@ -19,7 +20,7 @@ const Slider = ({className, children}) => {
     };
 
     useEffect(() => {
-        setTimeoutId(setTimeout(() => setNewCurrentChild(1), 40000));
+        setTimeoutId(setTimeout(() => setNewCurrentChild(1), SLIDER_TIMEOUT));
     }, [currentChild]);
 
     return (
@@ -39,7 +40,7 @@ Slider.propTypes = {
             src: PropTypes.string.isRequired,
             alt: PropTypes.string
     })),
-    children: PropTypes.arrayOf(PropTypes.node)
+    children: PropTypes.arrayOf(PropTypes.node).isRequired
 };
 
 export {Slider};

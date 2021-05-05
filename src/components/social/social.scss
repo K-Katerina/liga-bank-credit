@@ -4,7 +4,7 @@
   list-style: none;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
 
   @media (min-width: $desktop-width) {
     justify-content: space-around;

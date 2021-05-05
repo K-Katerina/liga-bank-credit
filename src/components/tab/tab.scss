@@ -1,3 +1,8 @@
 .tab {
   @include tab;
+  min-width: 292px;
+}
+
+.tab svg {
+  margin: 5px;
 }

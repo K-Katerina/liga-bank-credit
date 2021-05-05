@@ -10,8 +10,8 @@ const InputTel = (props) => {
               {props.label}
             </span>
             <MaskedInput {...props} value={newValue} mask="1111-111-11-11" className="input__text" type="text"/>
-            <span className="input__sublabel">
-              {props.sublabel}
+            <span className="input__desc">
+              {props.desc}
             </span>
         </label>
     );
@@ -19,10 +19,10 @@ const InputTel = (props) => {
 
 InputTel.propTypes = {
     className: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string,
-    sublabel: PropTypes.string,
+    desc: PropTypes.string,
     type: PropTypes.string
 };
 

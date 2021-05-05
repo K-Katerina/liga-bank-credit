@@ -37,7 +37,7 @@ const Menu = ({className}) => {
 };
 
 Menu.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string.isRequired
 };
 
 export {Menu};

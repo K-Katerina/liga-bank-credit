@@ -26,7 +26,7 @@ const CalculatorSelect = ({className}) => {
 };
 
 CalculatorSelect.propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired
 };
 
 export {CalculatorSelect};

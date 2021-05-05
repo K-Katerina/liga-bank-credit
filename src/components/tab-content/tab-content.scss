@@ -124,6 +124,7 @@
 
 .tab-content__item {
   display: flex;
+  position: relative;
   flex-direction: column;
 
   font-size: 14px;
@@ -132,6 +133,7 @@
 
   padding-bottom: 6px;
   padding-top: 6px;
+  padding-left: 20px;
 
   @media (min-width: $tablet-width) {
     font-size: 16px;
@@ -144,5 +146,14 @@
     font-size: 18px;
     line-height: 23px;
     font-weight: 400;
+  }
+
+  &:before {
+    content: '\2304';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 20px;
+    color: $color-service;
   }
 }

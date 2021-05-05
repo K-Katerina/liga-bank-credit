@@ -33,10 +33,10 @@ const Select = ({options, onChange, title, className}) => {
 };
 
 Select.propTypes = {
-    className: PropTypes.string,
-    options: PropTypes.object,
-    onChange: PropTypes.func,
-    title: PropTypes.string
+    className: PropTypes.string.isRequired,
+    options: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired
 };
 
 export {Select};

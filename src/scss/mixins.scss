@@ -91,6 +91,9 @@
 }
 
 @mixin tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
   font-size: 18px;
   line-height: 21px;
@@ -98,16 +101,18 @@
 
   min-height: 93px;
 
-  align-items: center;
 
   background-color: $color-background;
   color: $color-service--light;
   border: none;
   text-transform: none;
+  opacity: 0.9;
 
   &--active,
   &:hover,
   &:focus {
+    cursor: pointer;
+    opacity: 1;
     color: $color-service;
     background-color: $color-service--lightest;
     transition: 0.3s ease;
@@ -168,7 +173,7 @@
   padding-bottom: 5px;
 }
 
-@mixin sublabel {
+@mixin desc {
   font-size: 14px;
   line-height: 19px;
   font-weight: 400;

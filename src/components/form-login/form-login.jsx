@@ -1,17 +1,16 @@
-import PropTypes from 'prop-types';
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {PASSWORD_LENGTH} from '../../const';
-import {changeVisibilityFormLogin} from '../../store/actions';
-import {saveLoginToLocalStorage} from '../../thunks';
+import {changeVisibilityFormLogin, login} from '../../store/actions';
+import {saveLoginToLocalStorage} from '../../local-storage-service';
 import {getWordFormWithValue} from '../../utils';
 import {Button} from '../button/button';
 import {Input} from '../input/input';
 import {Logo} from '../logo/logo';
 import {Modal} from '../modal/modal';
 
-const FormLogin = ({className}) => {
-    const [email, setEmail] = useState('');
+const FormLogin = () => {
+    const [email, setEmail] = useState(useSelector(state => state.email));
     const [password, setPassword] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
@@ -26,7 +25,8 @@ const FormLogin = ({className}) => {
         setErrorPassword(passwordInvalid);
 
         if (!emailInvalid && !passwordInvalid) {
-            dispatch(saveLoginToLocalStorage({email, password}));
+            saveLoginToLocalStorage({email, password});
+            dispatch(login(email));
             closeForm();
         }
     };
@@ -54,16 +54,16 @@ const FormLogin = ({className}) => {
 
     return (
         <Modal closeModal={() => closeForm()}>
-            <form className={`form-login ${className}`} noValidate onSubmit={(evt) => handleSubmit(evt)}>
+            <form className="form-login" noValidate onSubmit={(evt) => handleSubmit(evt)}>
                     <h2 className="visually-hidden">Введите e-mail и пароль</h2>
                     <div className="form-login__wrapper">
                         <Logo className="form-login__logo"/>
                         <Input id="email"
-                               value={email}
+                               defaultValue={email}
                                label="Логин"
                                className={`${errorEmail && 'input--error'} form-login__input`}
                                type="email"
-                               sublabel={errorEmail}
+                               desc={errorEmail}
                                autoFocus
                                onChange={(event) => {
                                     setErrorEmail('');
@@ -71,11 +71,10 @@ const FormLogin = ({className}) => {
                                }}/>
                         <div className="form-login__input-wrapper">
                             <Input id="password"
-                                   value={password}
                                    label="Пароль"
                                    className={`${errorPassword && 'input--error'} form-login__input input--password`}
                                    type={isVisiblePassword ? 'text' : 'password'}
-                                   sublabel={errorPassword}
+                                   desc={errorPassword}
                                    onChange={(event) => {
                                         setErrorPassword('');
                                         setPassword(event.target.value);
@@ -92,10 +91,6 @@ const FormLogin = ({className}) => {
                 </form>
         </Modal>
     );
-};
-
-FormLogin.propTypes = {
-    className: PropTypes.string
 };
 
 export {FormLogin};

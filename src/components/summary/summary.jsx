@@ -10,15 +10,14 @@ import {Input} from '../input/input';
 const Summary = ({className, onClick}) => {
     const data = useSelector(state => state.data);
     const isAutoCredit = data && data.target === CreditTarget.AUTO_CREDIT;
-    const [userData, setUserData] = useState({});
-
+    const [userData, setUserData] = useState({name: data.name, phone: data.phone, email: data.email});
     const [error, setError] = useState({});
 
     const onSubmitClick = () => {
-        const nameInvalid = validateField('name', userData.name);
-        setError((prevError) => ({...prevError, name: nameInvalid}));
         const phoneInvalid = validateField('phone', userData.phone);
         setError((prevError) => ({...prevError, phone: phoneInvalid}));
+        const nameInvalid = validateField('name', userData.name);
+        setError((prevError) => ({...prevError, name: nameInvalid}));
         const emailInvalid = validateField('email', userData.email);
         setError((prevError) => ({...prevError, email: emailInvalid}));
         if (!emailInvalid && !phoneInvalid && !nameInvalid) {
@@ -27,16 +26,16 @@ const Summary = ({className, onClick}) => {
         }
     };
 
-    const validateField = (fieldName, value = '') => {
+    const validateField = (fieldName, value) => {
         switch (fieldName) {
             case 'email':
-                return value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+                return !!value && value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
                     ? '' : 'Email введен некорректно';
             case 'phone':
-                return value.match(/(\+7|8)\d{3}-\d{3}-\d{2}-\d{2}/i)
+                return !!value && value.match(/(\+7|8)\d{3}-\d{3}-\d{2}-\d{2}/i)
                     ? '' : 'Телефон введен некорректно';
             case 'name':
-                return value.length > 0
+                return !!value && value.length > 0
                     ? '' : 'ФИО не заполнено';
             default:
                 break;
@@ -77,8 +76,9 @@ const Summary = ({className, onClick}) => {
                        setError({...error, name: ''});
                        setUserData({...userData, name: evt.target.value});
                    }}
+                   defaultValue={userData.name}
                    autoFocus
-                   sublabel={error.name}
+                   desc={error.name}
                    placeholder="ФИО"
                    type="string"/>
             <div className="summary__group">
@@ -87,14 +87,16 @@ const Summary = ({className, onClick}) => {
                                setError({...error, phone: ''});
                                setUserData({...userData, phone: evt.target.value});
                           }}
-                          sublabel={error.phone}
+                          value={userData.phone}
+                          desc={error.phone}
                           placeholder="Телефон"/>
                 <Input className={`summary__input ${error.email && 'input--error'}`}
                        onChange={(evt) => {
                            setError({...error, email: ''});
                            setUserData({...userData, email: evt.target.value});
                        }}
-                       sublabel={error.email}
+                       defaultValue={userData.email}
+                       desc={error.email}
                        placeholder="E-mail"
                        type="email"/>
             </div>
@@ -106,8 +108,7 @@ const Summary = ({className, onClick}) => {
 
 Summary.propTypes = {
     className: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    isCredit: PropTypes.bool
+    onClick: PropTypes.func.isRequired
 };
 
 export {Summary};

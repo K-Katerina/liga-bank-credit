@@ -40,8 +40,8 @@
   }
 }
 
-.range__sublabel {
-  @include sublabel;
+.range__desc {
+  @include desc;
   display: flex;
   justify-content: space-between;
 }
