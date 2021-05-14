@@ -11,7 +11,7 @@ const initialState = {
     useInsurance: false,
     useComprehensiveCover: false,
     email: localStorage.getItem('login'),
-    isLoggedIn: !!localStorage.getItem('password'),
+    isLoggedIn: localStorage.getItem('isLoggedIn') === 'true',
     data: {
         count: 1,
         email: localStorage.getItem('email'),

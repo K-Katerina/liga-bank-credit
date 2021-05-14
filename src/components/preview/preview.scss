@@ -3,7 +3,26 @@
 
 .preview {
   background: $color-service--lightest;
-  background: linear-gradient(180.24deg, $color-service--lightest 36.31%, $color-service--lighten 99.79%);
+  width: 100%;
+
+  &--light {
+    background: $color-main;
+  }
+
+  &--main {
+    background: linear-gradient(to bottom, $color-main 32%, $color-main--dark 99.79%);
+  }
+
+  &--man {
+    background: linear-gradient(135deg, #d9dee8, #f6fbff);
+  }
+
+  &--woman {
+    background: #e5f1fd;
+  }
+}
+
+.preview__wrapper {
   z-index: 10;
   position: relative;
   margin: 0 auto;
@@ -15,11 +34,8 @@
 
   @media (min-width: $desktop-width) {
     min-height: 400px;
-  }
-
-  &--light {
-    background: $color-main;
-    background: linear-gradient(180.24deg, $color-main 36.31%, $color-main--dark 99.79%);
+    max-width: 1366px;
+    min-width: $desktop-width;
   }
 }
 

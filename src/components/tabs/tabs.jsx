@@ -51,7 +51,7 @@ const Tabs = ({className}) => {
                 {activeTab === TabTitles.DEPOSITS && <Deposits className={`tabs__${TabTitles.DEPOSITS.toLowerCase()}`}/>}
                 {activeTab === TabTitles.CREDITS && <Credits className={`tabs__${TabTitles.CREDITS.toLowerCase()}`}/>}
                 {activeTab === TabTitles.INSURANCE && <Insurance className={`tabs__${TabTitles.INSURANCE.toLowerCase()}`}/>}
-                {activeTab === TabTitles.ONLINE_SERVICES && <Services className={`tabs__${TabTitles.ONLINE_SERVICES.toLowerCase()}`}/>}
+                {activeTab === TabTitles.ONLINE_SERVICES && <Services className={`tabs__${TabTitles.ONLINE_SERVICES.toLowerCase().replaceAll('_', '-')}`}/>}
             </div>
             <Indicators className="tabs__indicators" count={tabOrder.length} activeIndicator={tabOrder.indexOf(activeTab)}/>
         </section>

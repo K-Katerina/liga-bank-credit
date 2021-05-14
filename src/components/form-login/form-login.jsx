@@ -11,7 +11,7 @@ import {Modal} from '../modal/modal';
 
 const FormLogin = () => {
     const [email, setEmail] = useState(useSelector(state => state.email));
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState(localStorage.getItem('password'));
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [isVisiblePassword, setIsVisiblePassword] = useState(false);
@@ -71,6 +71,7 @@ const FormLogin = () => {
                                }}/>
                         <div className="form-login__input-wrapper">
                             <Input id="password"
+                                   defaultValue={password}
                                    label="Пароль"
                                    className={`${errorPassword && 'input--error'} form-login__input input--password`}
                                    type={isVisiblePassword ? 'text' : 'password'}

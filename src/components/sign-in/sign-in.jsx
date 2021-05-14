@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {changeVisibilityFormLogin, logout} from '../../store/actions';
-import {clearLoginToLocalStorage} from '../../local-storage-service';
+import {saveStatusIsLoggedInToLocalStorage} from '../../local-storage-service';
 
 const SignIn = ({className}) => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const SignIn = ({className}) => {
 
     const onSignInClick = () => {
         if (isLoggedIn) {
-            clearLoginToLocalStorage();
+            saveStatusIsLoggedInToLocalStorage(false);
             dispatch(logout());
         } else {
             dispatch(changeVisibilityFormLogin(true));
@@ -27,7 +27,7 @@ const SignIn = ({className}) => {
                         fill="#1F1E25"/>
                 </svg>
                 <span className="sign-in__text">
-                    {email && isLoggedIn ? email : 'Войти в Интернет-банк'}
+                    {isLoggedIn && email ? email : 'Войти в Интернет-банк'}
                 </span>
             </button>
         </div>

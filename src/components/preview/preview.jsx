@@ -7,30 +7,32 @@ import woman from './woman.png';
 const Preview = ({className, title, subtitle, button, img, isLight}) => {
     return (
         <section className={`${className} preview ${isLight && 'preview--light'}`}>
-            <div className="preview__left">
-                <h1 className={`preview__title ${isLight && 'preview__title--light'}`}>
-                    {title}
-                    <span className={'preview__subtitle'}>{subtitle}</span>
-                </h1>
-                {button &&
-                    <a href={button.href}
-                       className={`preview__button ${isLight && 'preview__button--light'}`}>
-                        {button.title}
-                    </a>
-                }
-            </div>
-            <div className="preview__right">
-                <img className="preview__img"
-                     src={img.src}
-                     alt={img.alt}
-                />
+            <div className="preview__wrapper">
+                <div className="preview__left">
+                    <h1 className={`preview__title ${isLight && 'preview__title--light'}`}>
+                        {title}
+                        <span className={'preview__subtitle'}>{subtitle}</span>
+                    </h1>
+                    {button &&
+                        <a href={button.href}
+                           className={`preview__button ${isLight && 'preview__button--light'}`}>
+                            {button.title}
+                        </a>
+                    }
+                </div>
+                <div className="preview__right">
+                    <img className="preview__img"
+                         src={img.src}
+                         alt={img.alt}
+                    />
+                </div>
             </div>
         </section>
     );
 };
 
 const PreviewMain = ({className}) => (
-    <Preview className={className}
+    <Preview className={`${className} preview--main`}
              title="Лига Банк"
              subtitle="Кредиты на любой случай"
              isLight={true}
@@ -45,7 +47,7 @@ const PreviewMain = ({className}) => (
 );
 
 const PreviewMan = ({className}) => (
-    <Preview className={className}
+    <Preview className={`${className} preview--man`}
              title="Лига Банк"
              subtitle="Ваша уверенность в&nbsp;завтрашнем дне"
              isLight={false}
@@ -56,7 +58,7 @@ const PreviewMan = ({className}) => (
 );
 
 const PreviewWoman = ({className}) => (
-    <Preview className={className}
+    <Preview className={`${className} preview--woman`}
              title="Лига Банк"
              subtitle="Всегда рядом"
              isLight={false}

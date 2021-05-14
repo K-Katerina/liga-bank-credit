@@ -5,13 +5,13 @@
   width: 100%;
   position: relative;
   margin: 0 auto;
+  background-color: deeppink;
 
   @media (min-width: $tablet-width) {
-
+    max-width: 100%;
   }
 
   @media (min-width: $desktop-width) {
-    max-width: 1366px;
     min-width: $desktop-width;
   }
 }
