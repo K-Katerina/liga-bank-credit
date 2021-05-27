@@ -6,13 +6,12 @@ const Select = ({options, onChange, title, className}) => {
     const [isOpenSelect, setIsOpenSelect] = useState(false);
     const target = useSelector(state => state.target);
 
-
     const onSelectClick = () => {
         setIsOpenSelect(!isOpenSelect);
     };
 
     return (
-        <div onClick={() => onSelectClick()} className={`${className} select`}>
+        <div onClick={() => onSelectClick()} className={`${className} select ${isOpenSelect ? 'select--open' : 'select--close'}`}>
             <span className="select__option select__option--title" tabIndex="0">
                 {isOpenSelect ? title: options[target] || title}
             </span>

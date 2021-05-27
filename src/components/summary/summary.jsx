@@ -72,15 +72,15 @@ const Summary = ({className, onClick}) => {
                 </li>
             </ul>
             <Input className={`summary__input ${error.name && 'input--error'}`}
-                   onChange={(evt) => {
+                         onChange={(evt) => {
                        setError({...error, name: ''});
                        setUserData({...userData, name: evt.target.value});
                    }}
-                   defaultValue={userData.name}
-                   autoFocus
-                   desc={error.name}
-                   placeholder="ФИО"
-                   type="string"/>
+                         defaultValue={userData.name}
+                         autoFocus
+                         desc={error.name}
+                         placeholder="ФИО"
+                         type="string"/>
             <div className="summary__group">
                 <InputTel className={`summary__input ${error.phone && 'input--error'}`}
                           onChange={(evt) => {
@@ -91,14 +91,14 @@ const Summary = ({className, onClick}) => {
                           desc={error.phone}
                           placeholder="Телефон"/>
                 <Input className={`summary__input ${error.email && 'input--error'}`}
-                       onChange={(evt) => {
+                             onChange={(evt) => {
                            setError({...error, email: ''});
                            setUserData({...userData, email: evt.target.value});
                        }}
-                       defaultValue={userData.email}
-                       desc={error.email}
-                       placeholder="E-mail"
-                       type="email"/>
+                             defaultValue={userData.email}
+                             desc={error.email}
+                             placeholder="E-mail"
+                             type="email"/>
             </div>
             <Button className="summary__submit" nameButton="Отправить" onClick={() => onSubmitClick()}/>
 

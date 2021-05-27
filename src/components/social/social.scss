@@ -13,10 +13,21 @@
 
 .social__item {
   height: 26px;
-  width: 26px;
-  margin-left: 4px;
-  padding: 5px 0 0 10px;
   cursor: pointer;
+  width: 33px;
+  margin-left: 0;
+  padding: 5px 0 0 0;
+
+  @media (min-width: $tablet-width) {
+    padding: 5px 0 0 13px;
+    width: 31px;
+    margin-left: 4px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 5px 0 0 10px;
+    width: 26px;
+  }
 }
 
 .social__link {

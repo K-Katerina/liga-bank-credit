@@ -8,7 +8,7 @@ import {
     MOUNTS_IN_YEAR,
     PART_PAYMENT_OF_INCOME
 } from '../../const';
-import {getValidValue, getWordFormWithValue} from '../../utils';
+import {getCostOfPercent, getValidValue, getWordFormWithValue} from '../../utils';
 import {Button} from '../button/button';
 
 const Suggest = ({className, onClick}) => {
@@ -16,9 +16,12 @@ const Suggest = ({className, onClick}) => {
     const minCredit = isAutoCredit ? AutoCreditConsts.MIN_CREDIT : MortgageConsts.MIN_CREDIT;
     const minCost = isAutoCredit ? AutoCreditConsts.MIN_COST : MortgageConsts.MIN_COST;
     const maxCost = isAutoCredit ? AutoCreditConsts.MAX_COST : MortgageConsts.MAX_COST;
-    const cost = useSelector(state => state.cost);
-    const fee = useSelector(state => state.fee);
-    const creditSum = useSelector(state => getValidValue(cost, minCost, maxCost) - fee - MortgageConsts.PARENT_CAPITAL *
+    const cost = useSelector(state => getValidValue(state.cost, minCost, maxCost));
+    const useCapital = useSelector(state => state.useCapital);
+    const maxFeeCost = cost - minCredit - MortgageConsts.PARENT_CAPITAL * (useCapital && !isAutoCredit);
+    const minFee = isAutoCredit ? AutoCreditConsts.MIN_FEE : MortgageConsts.MIN_FEE;
+    const fee = useSelector(state => getValidValue(state.fee, getCostOfPercent(minFee, cost), maxFeeCost));
+    const creditSum = useSelector(state => cost - fee - MortgageConsts.PARENT_CAPITAL *
                                     (state.useCapital && state.target === CreditTarget.MORTGAGE)) || minCredit;
     const useComprehensiveCover = useSelector(state => state.useComprehensiveCover);
     const useInsurance = useSelector(state => state.useInsurance);

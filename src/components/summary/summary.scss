@@ -7,11 +7,17 @@
 
   @media (max-width: $mobile-width-only) {
     min-width: 100%;
-    padding: 18px 0 0;
+    padding: 14px 0 0;
+    margin-bottom: 27px;
+  }
+
+  @media (min-width: $tablet-width) {
+    padding: 18px 45px 37px;
   }
 
   @media (min-width: $desktop-width) {
     padding: 65px 70px 70px;
+    margin-bottom: 92px;
   }
 }
 
@@ -22,6 +28,17 @@
 
   @media (max-width: $tablet-width-only) {
     min-width: 100%;
+  }
+
+  @media (max-width: $mobile-width-only) {
+    font-size: 14px;
+    margin-top: 20px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  @media (min-width: $desktop-width) {
+    min-width: auto;
   }
 }
 
@@ -40,7 +57,7 @@
   @media (min-width: $desktop-width) {
     font-size: 22px;
     line-height: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 11px;
   }
 }
 
@@ -57,7 +74,7 @@
 }
 
 .summary__group .summary__input:first-child {
-  margin-right: 5px;
+  margin-right: 25px;
 
   @media (max-width: $mobile-width-only) {
     margin-right: 0;
@@ -75,7 +92,11 @@
 .summary__input {
   width: 100%;
   flex-grow: 1;
-  margin-bottom: 15px;
+  margin-bottom: 3px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 16px;
+  }
 }
 
 .summary__input input {
@@ -88,7 +109,7 @@
   list-style: none;
   flex-grow: 1;
   width: 100%;
-  margin-bottom: 17px;
+  margin-bottom: 19px;
 }
 
 .list__item {
@@ -101,7 +122,7 @@
   line-height: 21px;
   font-weight: 400;
 
-  padding: 12px 0;
+  padding: 16px 0 8px 0;
   border-bottom: 1px rgba($color-service--lighten, 0.4) solid;
 
   @media (max-width: $mobile-width-only) {

@@ -23,6 +23,9 @@ export const getValidValue = (value, min, max) => {
     return validValue;
 };
 
+export const getPercentOfCost = (percent, cost) => Math.ceil((percent * 100) / cost);
+export const getCostOfPercent = (percent, cost) => Math.ceil((percent * cost) / 100);
+
 export const getWordFormWithValue = (n, array) => n.toLocaleString() + ' ' + getWordForm(n, array);
 
 export const range = (count) => {

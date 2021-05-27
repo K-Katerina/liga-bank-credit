@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Input} from '../input/input';
+import {InputFormat} from '../input-format/input-format';
 
 const Range = ({className, label, desc, onChangeInput, onChangeRange, value, max, min, step, range, ...rest}) => {
 
     return (
         <div className={`${className} range`}>
-            <Input className="range__input"
-                   label={label}
-                   onChange={(evt) => onChangeInput(evt)}
-                   value={value}
-                   {...rest}/>
+            <InputFormat className="range__input"
+                         label={label}
+                         onChangeValue={(value) => onChangeInput(value)}
+                         value={value}
+                         {...rest}/>
             <input className="range__slider"
                    type="range"
                    onChange={(evt) => onChangeRange(evt)}

@@ -2,21 +2,21 @@
 
 .map {
   position: relative;
-  margin: 0 auto;
-  margin-bottom: 40px;
   min-width: 320px;
+  margin: 25px auto 45px;
 
   @media (min-width: $tablet-width) {
     min-width: $tablet-width;
     padding: 0 45px;
-    margin-bottom: 78px;
+    margin-bottom: 75px;
+    margin-top: 35px;
   }
 
   @media (min-width: $desktop-width) {
     min-width: $desktop-width;
-    margin: 0 auto 108px;
     max-width: 1366px;
     padding: 0 98px;
+    margin: 0 auto 102px;
   }
 }
 

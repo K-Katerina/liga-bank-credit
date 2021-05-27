@@ -24,7 +24,7 @@
   cursor: pointer;
   color: $color-service--lightest;
   background-color: $color-main;
-  max-width: 234px;
+  max-width: 200px;
   text-decoration: none;
   font-size: 16px;
   line-height: 25px;
@@ -35,14 +35,7 @@
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  padding: 16px 36px;
-
-
-  &--small {
-    padding: 17px 28px;
-    font-size: 16px;
-    line-height: 18px;
-  }
+  padding: 16px 22px;
 
   &:hover,
   &:focus {
@@ -64,20 +57,24 @@
   @media (max-width: $mobile-width-only) {
     font-size: 14px;
     line-height: 16px;
+    padding: 13px 31px;
   }
 
   @media (min-width: $tablet-width) {
     font-size: 16px;
+    padding: 13px 25px;
+    min-width: 205px;
   }
 
   @media (min-width: $desktop-width) {
     font-size: 18px;
+    min-width: 243px;
+    padding: 14px 35px;
   }
 }
 
 @mixin button-outline {
   @include button;
-
   background-color: $color-service--lightest;
   color: $color-service;
 
@@ -87,6 +84,22 @@
   &:focus {
     color: $color-background;
     background-color: $color-main;
+  }
+
+  @media (max-width: $mobile-width-only) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 16px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
+    max-width: 234px;
+    min-width: auto;
+    padding: 14px 35px;
   }
 }
 
@@ -100,7 +113,6 @@
   font-weight: 500;
 
   min-height: 93px;
-
 
   background-color: $color-background;
   color: $color-service--light;
@@ -170,7 +182,7 @@
   font-weight: 400;
   color: $color-service--light;
   display: block;
-  padding-bottom: 5px;
+  padding-bottom: 8px;
 }
 
 @mixin desc {

@@ -9,7 +9,7 @@
   padding: 53px 14px;
 
   @media (min-width: $tablet-width) {
-    padding: 53px 44px;
+    padding: 57px 44px;
     min-height: 380px;
   }
 
@@ -22,9 +22,18 @@
 .tab-content__button {
   @include button;
   font-size: 15px;
+  min-width: 100%;
 
-  @media (max-width: $mobile-width-only) {
-    min-width: 100%;
+  @media (min-width: $tablet-width) {
+    padding: 12px 31px;
+    min-width: auto;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 16px;
+    max-width: 198px;
+    min-width: auto;
+    padding: 13px 30px;
   }
 }
 
@@ -64,7 +73,8 @@
   }
 
   @media (min-width: $desktop-width) {
-    max-width: 400px;
+    max-width: 40%;
+    margin-bottom: 10px;
   }
 }
 
@@ -79,8 +89,17 @@
     right: 0;
     top: 25%;
   }
+
+  @media (min-width: $tablet-width) {
+    right: 45px;
+    bottom: 55px;
+    max-width: 37%;
+  }
+
   @media (min-width: $desktop-width) {
-    right: 105px;
+    right: 135px;
+    bottom: 60px;
+    max-width: 40%;
   }
 }
 
@@ -95,10 +114,12 @@
   }
 
   @media (min-width: $tablet-width) {
+    object-position: 96%;
     height: 260px;
   }
 
   @media (min-width: $desktop-width) {
+    object-position: 100%;
     height: 100%;
   }
 }
@@ -114,11 +135,11 @@
   }
 
   @media (min-width: $tablet-width) {
-    margin-bottom: 37px;
+    margin-bottom: 23px;
   }
 
   @media (min-width: $desktop-width) {
-    margin-bottom: 25px;
+    margin-bottom: 26px;
   }
 }
 
@@ -133,9 +154,10 @@
 
   padding-bottom: 6px;
   padding-top: 6px;
-  padding-left: 20px;
+  padding-left: 16px;
 
   @media (min-width: $tablet-width) {
+    padding-left: 20px;
     font-size: 16px;
     line-height: 20px;
     padding-bottom: 8px;

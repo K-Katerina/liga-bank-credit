@@ -16,7 +16,7 @@ export const Actions = {
 
 export const MOUNTS_IN_YEAR = 12;
 export const PASSWORD_LENGTH = 5;
-export const SLIDER_TIMEOUT = 4000;
+export const SLIDER_TIMEOUT = 400000;
 
 export const Tabs = {
     DEPOSITS: 'DEPOSITS',

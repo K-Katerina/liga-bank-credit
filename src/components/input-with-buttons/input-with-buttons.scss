@@ -3,14 +3,14 @@
 }
 
 .input-with-buttons__button {
-  top: 29%;
+  top: 36%;
   position: absolute;
   width: 30px;
   height: 30px;
   border: none;
   background: transparent;
   outline: 0;
-  font-size: 42px;
+  font-size: 32px;
   cursor: pointer;
   z-index: 20;
 
@@ -20,10 +20,23 @@
   }
 
   &--minus {
-    left: 5%;
+    left: 3%;
   }
 
   &--plus {
-    right: 5%;
+    right: 3%;
   }
+}
+
+.input-with-buttons.input--error::before {
+    content: "Некорректное значение";
+    position: absolute;
+    top: 74px;
+    right: 7px;
+    color: $color-error;
+
+    margin-left: -68px;
+
+    font-size: 12px;
+    line-height: 14px;
 }

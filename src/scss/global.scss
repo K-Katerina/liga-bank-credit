@@ -8,6 +8,15 @@ body {
   font-weight: 400;
   color: $color-service;
   background-color: $color-background;
+
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }
 
 main,
