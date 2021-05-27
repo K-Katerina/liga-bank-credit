@@ -1,6 +1,9 @@
 @import "../../scss/colors";
 
-.sign-in {
+.sign-in svg {
+  @media (max-width: $mobile-width-only) {
+    height: 16px;
+  }
 }
 
 .sign-in__text {

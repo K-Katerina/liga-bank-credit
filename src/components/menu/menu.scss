@@ -10,6 +10,7 @@
 
   @media (max-width: $mobile-width-only) {
     justify-content: flex-start;
+    max-width: 100%;
   }
 
   @media (min-width: $tablet-width) {
@@ -31,6 +32,10 @@
   &--column .menu__item {
     padding: 5px 0;
 
+    @media (min-width: $tablet-width) {
+      padding: 5px 3px;
+    }
+
     @media (min-width: $desktop-width) {
       padding: 5px 14px;
     }
@@ -51,6 +56,11 @@
 
 .menu__item {
   padding: 10px 12.5px;
+
+  @media (max-width: $tablet-width-only) {
+    font-size: 14px;
+    padding: 10px;
+  }
 
   @media (min-width: $tablet-width) {
     &:first-child {

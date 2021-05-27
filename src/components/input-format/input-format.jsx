@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NumberFormat from 'react-number-format';
 
-const Input = (props) => {
+const InputFormat = (props) => {
     return (
         <label className={`${props.className} input`}>
             <span className="input__label">
               {props.label}
             </span>
-            <input {...props} className="input__text" type={props.type || 'number'}/>
+            <NumberFormat className="input__text"
+                          onBlur={props.onBlur}
+                          thousandSeparator={' '}
+                          value={props.value}
+                          suffix={' ' + props.mask}
+                          onValueChange={(evt) => props.onChangeValue(evt.value)}/>
             <span className="input__desc">
               {props.desc}
             </span>
@@ -15,7 +21,7 @@ const Input = (props) => {
     );
 };
 
-Input.propTypes = {
+InputFormat.propTypes = {
     className: PropTypes.string.isRequired,
     onChangeValue: PropTypes.func,
     onBlur: PropTypes.func,
@@ -26,4 +32,4 @@ Input.propTypes = {
     mask: PropTypes.string
 };
 
-export {Input};
+export {InputFormat};

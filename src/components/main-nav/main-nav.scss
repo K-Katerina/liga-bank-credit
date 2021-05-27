@@ -16,24 +16,36 @@
 
   @media (min-width: $desktop-width) {
     min-height: 91px;
-
   }
 }
 
 .main-nav__logo {
   height: 25px;
-  margin-bottom: 10px;
   align-items: baseline;
+
+  @media (max-width: $mobile-width-only) {
+    align-items: center;
+    height: 23px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 10px;
+  }
 }
 
 .main-nav__menu {
   @media (max-width: $mobile-width-only) {
+    padding: 32px 15px 0;
     background-color: $color-service--lightest;
     width: 100%;
-    position: absolute;
-    top: 48px;
-    left: 0;
     z-index: 50;
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    top: 46px;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }
 
@@ -46,6 +58,13 @@
     border-bottom: 1px rgba($color-service--lighten, 0.4) solid;
   }
 }
+
+.main-nav__menu .menu__item:first-child {
+  @media (max-width: $mobile-width-only) {
+    border-top: 1px rgba($color-service--lighten, 0.4) solid;
+  }
+}
+
 
 .main-nav > .menu--closed {
   @media (max-width: $mobile-width-only) {

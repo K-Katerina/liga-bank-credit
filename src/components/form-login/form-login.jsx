@@ -59,24 +59,24 @@ const FormLogin = () => {
                     <div className="form-login__wrapper">
                         <Logo className="form-login__logo"/>
                         <Input id="email"
-                               defaultValue={email}
-                               label="Логин"
-                               className={`${errorEmail && 'input--error'} form-login__input`}
-                               type="email"
-                               desc={errorEmail}
-                               autoFocus
-                               onChange={(event) => {
+                                     defaultValue={email}
+                                     label="Логин"
+                                     className={`${errorEmail && 'input--error'} form-login__input`}
+                                     type="email"
+                                     desc={errorEmail}
+                                     autoFocus
+                                     onChange={(event) => {
                                     setErrorEmail('');
                                     setEmail(event.target.value);
                                }}/>
                         <div className="form-login__input-wrapper">
                             <Input id="password"
-                                   defaultValue={password}
-                                   label="Пароль"
-                                   className={`${errorPassword && 'input--error'} form-login__input input--password`}
-                                   type={isVisiblePassword ? 'text' : 'password'}
-                                   desc={errorPassword}
-                                   onChange={(event) => {
+                                         defaultValue={password}
+                                         label="Пароль"
+                                         className={`${errorPassword && 'input--error'} form-login__input input--password`}
+                                         type={isVisiblePassword ? 'text' : 'password'}
+                                         desc={errorPassword}
+                                         onChange={(event) => {
                                         setErrorPassword('');
                                         setPassword(event.target.value);
                                    }}/>

@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {AutoCreditConsts, CreditTarget, MortgageConsts} from '../../const';
 import {saveUserDataToLocalStorage} from '../../local-storage-service';
+import {getCostOfPercent, getValidValue} from '../../utils';
 import {CalculatorOptions} from '../calculator-options/calculator-options';
 import {SuccessModal} from '../success-modal/success-modal';
 import {Summary} from '../summary/summary';
 import {
-    changeTarget, saveData,
+    changeTarget, deleteData, saveData,
 } from '../../store/actions';
 
 const Calculator = ({className}) => {
@@ -20,19 +22,26 @@ const Calculator = ({className}) => {
     const period = useSelector(state => state.period);
     const data = useSelector(state => state.data);
     const target = useSelector(state => state.target);
+    const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
+    const minCost = isAutoCredit ? AutoCreditConsts.MIN_COST : MortgageConsts.MIN_COST;
+    const maxCost = isAutoCredit ? AutoCreditConsts.MAX_COST : MortgageConsts.MAX_COST;
+    const useCapital = useSelector(state => state.useCapital);
+    const minCredit = isAutoCredit ? AutoCreditConsts.MIN_CREDIT : MortgageConsts.MIN_CREDIT;
+    const maxFeeCost = getValidValue(cost, minCost, maxCost) - minCredit - MortgageConsts.PARENT_CAPITAL * (useCapital && !isAutoCredit);
+    const minFee = isAutoCredit ? AutoCreditConsts.MIN_FEE : MortgageConsts.MIN_FEE;
 
     const onSuggestButtonClick = () => {
         dispatch(saveData({
             count: data.count + 1,
             target: target,
-            cost: cost,
-            fee: fee,
+            cost: getValidValue(cost, minCost, maxCost),
+            fee: getValidValue(fee, getCostOfPercent(minFee, getValidValue(cost, minCost, maxCost)), maxFeeCost),
             period: period,
         }));
         setIsOpenForm(true);
     };
-
     const onSubmitClick = ({name, phone, email}) => {
+        dispatch(deleteData());
         dispatch(saveData({
             count: data.count + 1
         }));

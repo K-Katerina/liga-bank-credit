@@ -10,14 +10,13 @@ import {
     changeCost,
     changeFee,
     changePeriod,
-    changeUseCapital, changeUseComprehensiveCover, changeUseInsurance, deleteData
+    changeUseCapital, changeUseComprehensiveCover, changeUseInsurance
 } from '../../store/actions';
 
 const CalculatorOptions = ({className, onSuggestButtonClick}) => {
     const dispatch = useDispatch();
     const target = useSelector(state => state.target);
     const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
-
     const creditSum = useSelector(state => state.cost - state.fee - MortgageConsts.PARENT_CAPITAL * (state.useCapital && state.target === CreditTarget.MORTGAGE));
     const minCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT ? AutoCreditConsts.MIN_CREDIT : MortgageConsts.MIN_CREDIT);
 
@@ -33,7 +32,6 @@ const CalculatorOptions = ({className, onSuggestButtonClick}) => {
         dispatch(changeUseCapital(false));
         dispatch(changeUseComprehensiveCover(false));
         dispatch(changeUseInsurance(false));
-        dispatch(deleteData());
     };
 
     return (

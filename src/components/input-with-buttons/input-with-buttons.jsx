@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Input} from '../input/input';
+import {InputFormat} from '../input-format/input-format';
 
 const NamesButton = {
     PLUS: 'PLUS',
@@ -21,10 +21,13 @@ const InputWithButtons = ({className, onChange, step, value, ...rest}) => {
     };
 
     return (
-        <div className={`${className} input-with-buttons`}>
+        <div className={`input-with-buttons ${className}`}>
             <button onClick={(evt) => onValueChange(evt.target.name)} className="input-with-buttons__button input-with-buttons__button--minus" name={NamesButton.MINUS}>−</button>
             <button onClick={(evt) => onValueChange(evt.target.name)} className="input-with-buttons__button input-with-buttons__button--plus" name={NamesButton.PLUS}>+</button>
-            <Input value={value} onChange={(evt) => onValueChange(evt.target.value)} className="input-with-buttons__input" {...rest}/>
+            <InputFormat {...rest}
+                         value={value}
+                         onChangeValue={(value) => onValueChange(value)}
+                         className="input-with-buttons__input"/>
         </div>
     );
 };

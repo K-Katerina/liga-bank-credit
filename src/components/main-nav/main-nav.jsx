@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {ESC_CODE} from '../../const';
 import {changeVisibilityMenu} from '../../store/actions';
 import {Burger} from '../burger/burger';
 import {CloseButton} from '../close-button/close-button';
@@ -12,6 +13,24 @@ const MainNav = ({className}) => {
 
     const dispatch = useDispatch();
     const menuIsOpen = useSelector(state => state.menuIsOpen);
+
+    useEffect(() => {
+        const preventWheelScroll = (evt) => evt.preventDefault();
+        if (menuIsOpen) {
+            document.addEventListener('keydown', onEscClick);
+            window.addEventListener('wheel', preventWheelScroll, {passive: false});
+        }
+        return () => {
+            document.removeEventListener('keydown', onEscClick);
+            window.removeEventListener('wheel', preventWheelScroll);
+        };
+    }, [menuIsOpen]);
+
+    const onEscClick = (event) => {
+        if (event.keyCode === ESC_CODE) {
+            onClickClose();
+        }
+    };
 
     const onClickClose= () => {
         dispatch(changeVisibilityMenu(false));

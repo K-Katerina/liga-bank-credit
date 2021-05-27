@@ -9,7 +9,7 @@ const InputTel = (props) => {
             <span className="input__label">
               {props.label}
             </span>
-            <MaskedInput {...props} value={newValue} mask="1111-111-11-11" className="input__text" type="text"/>
+            <MaskedInput {...props} value={newValue} mask="+7111-111-11-11" className="input__text" type="text"/>
             <span className="input__desc">
               {props.desc}
             </span>

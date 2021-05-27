@@ -14,18 +14,40 @@
   border: 1px $color-service solid;
   cursor: pointer;
 
-  &:after {
-    content: '\2304';
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    font-size: 16px;
-    color: $color-service;
-  }
-
   &:hover,
   &:focus {
     border-color: $color-main;
+  }
+}
+
+.select--open {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: 19px;
+
+    width: 18px;
+    height: 11px;
+
+    background-image: url("select.svg");
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+  }
+}
+
+.select--close {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: 19px;
+
+    width: 18px;
+    height: 11px;
+
+    background-image: url("select.svg");
+    background-repeat: no-repeat;
   }
 }
 
@@ -62,5 +84,9 @@
 
   &:last-child {
     border: none;
+  }
+
+  @media (max-width: $mobile-width-only) {
+    padding: 18px 16px;
   }
 }

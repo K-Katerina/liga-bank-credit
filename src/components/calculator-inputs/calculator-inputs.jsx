@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {AutoCreditConsts, CreditTarget, MortgageConsts, STEP_FEE} from '../../const';
-import {getValidValue, getWordForm, getWordFormWithValue} from '../../utils';
+import {getCostOfPercent, getPercentOfCost, getValidValue, getWordForm, getWordFormWithValue} from '../../utils';
 import {InputCheckbox} from '../input-checkbox/input-checkbox';
 import {InputWithButtons} from '../input-with-buttons/input-with-buttons';
 import {Range} from '../range/range';
@@ -22,7 +22,6 @@ const CalculatorInputs = ({className}) => {
     const useComprehensiveCover = useSelector(state => state.useComprehensiveCover);
     const useInsurance = useSelector(state => state.useInsurance);
     const isAutoCredit = useSelector(state => state.target === CreditTarget.AUTO_CREDIT);
-
     const minCost = isAutoCredit ? AutoCreditConsts.MIN_COST : MortgageConsts.MIN_COST;
     const maxCost = isAutoCredit ? AutoCreditConsts.MAX_COST : MortgageConsts.MAX_COST;
     const minFee = isAutoCredit ? AutoCreditConsts.MIN_FEE : MortgageConsts.MIN_FEE;
@@ -34,17 +33,15 @@ const CalculatorInputs = ({className}) => {
     const maxFeeCost = cost - minCredit - MortgageConsts.PARENT_CAPITAL *
         (useCapital && !isAutoCredit);
 
-    const getPercentOfCost = (value) => Math.ceil((value * 100) / cost) || minFee;
-    const getCostOfPercent = (percent, value = cost) => Math.ceil((percent * value) / 100);
-
     const [percent, setPercent] = useState(minFee);
     const [errorCost, setErrorCost] = useState(false);
 
     const onCostChange = (value) => {
         const validCost = Number.parseFloat(value);
+        onCostValidate(validCost);
+
         if (isFinite(validCost)) {
             dispatch(changeCost(validCost));
-            setErrorCost(false);
         }
         setPercent(minFee);
         if (isFinite(Number.parseFloat(value)) && value > minCost && value < maxCost) {
@@ -54,22 +51,23 @@ const CalculatorInputs = ({className}) => {
         }
     };
 
-    const onCostValidate = () => {
-        if (!isFinite(Number.parseFloat(cost)) || cost < minCost || cost > maxCost) {
-            dispatch(changeCost('Некорректное значение'));
+    const onCostValidate = (value) => {
+        if (!isFinite(Number.parseFloat(value)) || value < minCost || value > maxCost) {
             setErrorCost(true);
+        } else {
+            setErrorCost(false);
         }
     };
 
     const onFeeChange = (value) => {
         dispatch(changeFee(value));
-        setPercent(getPercentOfCost(value));
+        setPercent(getPercentOfCost(value, cost) || minFee);
     };
 
     const onFeeValidate = () => {
         const validFee = getValidValue(fee, getCostOfPercent(minFee, cost), maxFeeCost);
         dispatch(changeFee(validFee));
-        setPercent(getPercentOfCost(validFee));
+        setPercent(getPercentOfCost(validFee, cost) || minFee);
     };
 
     const onPeriodChange = (value) => {
@@ -100,16 +98,15 @@ const CalculatorInputs = ({className}) => {
                                   value={cost}
                                   min={minCost}
                                   max={maxCost}
-                                  mask={getWordForm(fee, [' рубль', ' рубля', ' рублей'])}
+                                  mask={getWordForm(cost, [' рубль', ' рубля', ' рублей'])}
                                   step={stepCost}
                                   onChange={(value) => onCostChange(value)}
-                                  onBlur={() => onCostValidate()}
                                   type="string"
                                   label={`Стоимость ${isAutoCredit ? 'автомобиля' : 'недвижимости'}`}
                                   desc={`${errorCost ? 'Введите сумму от' : 'От'} ${minCost.toLocaleString()} до ${maxCost.toLocaleString()} рублей`}/>
 
-                <Range onChangeInput={(evt) => onFeeChange(evt.target.value)}
-                       onChangeRange={(evt) => onFeeChange(getCostOfPercent(evt.target.value))}
+                <Range onChangeInput={(value) => onFeeChange(value)}
+                       onChangeRange={(evt) => onFeeChange(getCostOfPercent(evt.target.value, cost))}
                        onBlur={() => onFeeValidate()}
                        className="calculator-inputs__range"
                        range={percent}
@@ -121,11 +118,11 @@ const CalculatorInputs = ({className}) => {
                        label="Первоначальный взнос"
                        desc={`${percent > maxFee ? maxFee : percent}%`}/>
 
-                <Range onChangeInput={(evt) => onPeriodChange(evt.target.value)}
-                       onChangeRange={(evt) => onPeriodChange(evt.target.value)}
+                <Range onChangeInput={(value) => onPeriodChange(Number(value))}
+                       onChangeRange={(evt) => onPeriodChange(Number(evt.target.value))}
                        onBlur={() => onPeriodValidate()}
                        className="calculator-inputs__range"
-                       value={period}
+                       value={Number(period)}
                        range={period}
                        min={minPeriod}
                        max={maxPeriod}

@@ -3,15 +3,14 @@
 .calculator {
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
 
   @media (min-width: $tablet-width) {
-    margin-bottom: 24px;
+    margin-bottom: 0;
   }
 
-
   @media (min-width: $desktop-width) {
-    margin-bottom: 90px;
+    margin-bottom: 3px;
   }
 }
 
